@@ -1,5 +1,5 @@
 .env
 
-# Ignore auto generated python and django folders
+# Ignore auto generated folders
 __pycache__/
 migrations/
