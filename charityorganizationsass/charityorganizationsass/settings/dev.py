@@ -9,8 +9,12 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ['*'] 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# CONSOLE EMAIL BACKEND - TESTING
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# FILE BASED EMAIL BACKEND - TESTING
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = str(BASE_DIR + '/sent_emails')
 
 try:
     from .local import *
