@@ -57,7 +57,7 @@ def edit_custom_user_profile(request):
             'form':form
         }
 
-    return render(request, 'registration/edit_custom_user_profile.html', context=context)
+    return render(request, 'accounts/edit_custom_user_profile.html', context=context)
 
 @login_required
 def account_profile_page(request):
