@@ -6,4 +6,4 @@ from .models import Event
 class CreateEventForm(ModelForm):
 	class Meta:
 		model = Event
-		exclude = ["user", "event_slug"]
+		exclude = ["user", "event_slug", "slug"]
