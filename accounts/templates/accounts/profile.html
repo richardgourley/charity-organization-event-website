@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+<!--- django-countries requires calling of template tags ---->
+{% load countries %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+<h1>Your Profile</h1>
+
+<p><strong>USERNAME: </strong>{{ current_user }}</p>
+<p><strong>EMAIL: {{ current_user.email_adress }}</strong></p>
+
+<h2>Charity Information</h2>
+<p><strong>CHARITY NAME: </strong>{{ current_user.charity_name }}</p>
+<p><strong>CHARITY ADDRESS:</strong></p>
+<p>{{ current_user.charity_address_line_1 }}</p>
+<p>{{ current_user.charity_address_line_2 }}</p>
+<p>{{ current_user.charity_postcode }}</p>
+<p><strong>COUNTRY: </strong>{{ current_user.charity_country.name }}</p>
+<p><strong>OPERATING IN: </strong>{{ current_user.get_charity_operating_continent_display }}</p>
+
+<p><strong>WEBSITE URL: </strong>{{ current_user.charity_website_url }}</p>
+<p><strong>BIO (As seen by website visitors): </strong>{{ current_user.charity_bio }}</p>
+
+<a href="{% url 'accounts:editprofile' %}">Want to change something? Click here to edit your profile..</a>
+
+
+{% endblock %}
