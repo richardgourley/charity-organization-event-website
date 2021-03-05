@@ -11,3 +11,6 @@ class Event(models.Model):
 
     def __str__(self):
         return self.event_name
+
+    def get_absolute_url(self):
+        return reverse('events:event_detail', kwargs={'slug':self.slug})
