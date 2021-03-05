@@ -8,3 +8,6 @@ class Event(models.Model):
     event_date = models.DateField()
     event_url = models.URLField(help_text="Enter a url users can visit to learn more.")
     slug = models.SlugField(null=False, unique=True)
+
+    def __str__(self):
+        return self.event_name
