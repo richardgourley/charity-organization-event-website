@@ -24,7 +24,7 @@ def edit_custom_user_profile(request):
     current_user = CustomUser.objects.get(id=request.user.id)
     
     if request.method == "POST":
-        form = EditCustomUserProfileForm(request.POST)
+        form = EditCustomUserProfileForm(request.POST, request.FILES)
         if form.is_valid():
             current_user.charity_name = form.cleaned_data['charity_name']
             current_user.charity_address_line_1 = form.cleaned_data['charity_address_line_1']
@@ -34,6 +34,7 @@ def edit_custom_user_profile(request):
             current_user.charity_bio = form.cleaned_data['charity_bio']
             current_user.charity_country = form.cleaned_data['charity_country']
             current_user.charity_operating_continent = form.cleaned_data['charity_operating_continent']
+            current_user.charity_image = form.cleaned_data['charity_image']
             current_user.save()
             return HttpResponseRedirect(reverse('accounts:profile'))
         else:
@@ -50,6 +51,7 @@ def edit_custom_user_profile(request):
             'charity_bio':current_user.charity_bio,
             'charity_country':current_user.charity_country,
             'charity_operating_continent':current_user.charity_operating_continent,
+            'charity_image':current_user.charity_image
         }
         form = EditCustomUserProfileForm(initial=data)
         
