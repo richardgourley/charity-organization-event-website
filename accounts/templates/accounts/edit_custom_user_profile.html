@@ -6,10 +6,10 @@
 
 <h2>Update your account settings</h2>
 
-<p>If you wish to change your password, click <a href="{% url 'home' %}">here</a></p>
+<p>If you wish to change your password, click <a href="{% url 'accounts:password_reset' %}">here</a></p>
 
 {% if user.is_authenticated %}
-<form method="post">
+<form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Update Profile</button>

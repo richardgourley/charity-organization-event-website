@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}All Charities{% endblock %}
+
+{% block content %}
+
+<h2>All charities</h2>
+
+{% for user in users %}
+<div>
+<h3>{{ user.charity_name }}</h3>
+<img src="{{ user.charity_image.url }}" class="img-fluid" style="max-width:200px; max-height:150px;" />
+<p>COUNTRY: {{ user.charity_country.name }}</p>
+<p>BIO: {{ user.charity_bio }}</p>
+<p>OPERATING IN: {{ user.get_charity_operating_continent_display }}</p>
+<p><a href="{{ user.charity_website_url }}">Visit website</a><p>
+</div>
+
+<div>
+<h3>SEE EVENTS COMING UP FOR {{ user.charity_name }}:</h3>
+{% for event in user.event_set.all %}
+<p>
+	<a href="{% url 'events:event_detail' event.slug %}">
+	    {{ event.event_name }}
+    </a>
+</p>
+{% endfor %}
+</div>
+
+<hr />
+{% endfor %}
+
+{% endblock %}

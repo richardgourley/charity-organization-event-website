@@ -14,6 +14,7 @@
 
 <h2>Charity Information</h2>
 <p><strong>CHARITY NAME: </strong>{{ current_user.charity_name }}</p>
+<img src="{{ current_user.charity_image.url }}" class="img-fluid" style="max-width:200px; max-height:150px;" />
 <p><strong>CHARITY ADDRESS:</strong></p>
 <p>{{ current_user.charity_address_line_1 }}</p>
 <p>{{ current_user.charity_address_line_2 }}</p>
@@ -26,5 +27,15 @@
 
 <a href="{% url 'accounts:editprofile' %}">Want to change something? Click here to edit your profile..</a>
 
+<h1>EVENTS:</h1>
+<p>You currently have {{ num_events}} event/s created.</p>
+
+{% for event in events %}
+<h2>{{ event.event_name }}</h2>
+<p>{{ event.event_description }}</p>
+<p>{{ event.event_date }}</p>
+<a href="{% url 'events:update_event' event.slug %}">Update this event</a>
+<p>----------------</p>
+{% endfor %}
 
 {% endblock %}
