@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Create a new event{% endblock %}
+
+{% block content %}
+<h2>New Event</h2>
+<small>NOTE: We have to approve all events before they go live on the website. Please allow up to 24 hours. Thank you.</small>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Create event</button>
+</form>
+{% endblock %}
