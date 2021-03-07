@@ -75,4 +75,9 @@ def account_profile_page(request):
     }
     return render(request, 'accounts/profile.html', context=context)
 
+# A charity list view - represented as url - 'all_charities' - see main urls.py
+def charity_list_view(request):
+    users = CustomUser.objects.all().filter(approved=True)
+    return render(request, 'accounts/charity_list.html', context={'users':users})
+
 
