@@ -9,9 +9,6 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ['*'] 
 
-# CONSOLE EMAIL BACKEND - TESTING
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 # FILE BASED EMAIL BACKEND - TESTING
 # We are using filebased emails in a folder called /sentemails for testing purposes
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
