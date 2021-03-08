@@ -8,17 +8,19 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 
+from accounts.views import charity_list_view
+
 urlpatterns = [
     path('django-admin/', admin.site.urls),
 
-    path('accounts/', include('accounts.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
-
     path('admin/', include(wagtailadmin_urls)),
+    path('accounts/', include('accounts.urls')),
+    path('all_charities/', charity_list_view, name='all_charities'),
+    path('events/', include('events.urls')),
     path('documents/', include(wagtaildocs_urls)),
 
     path('search/', search_views.search, name='search'),
-
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 
