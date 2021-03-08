@@ -18,8 +18,23 @@ class CustomUserCreationForm(UserCreationForm):
             'charity_bio',
             'charity_country',
             'charity_operating_continent',
-            'charity_image', 
+            'charity_image',
         )
+
+        widgets = {
+            'username':forms.TextInput(attrs={'class':'form-control mb-4 border'}),
+            'email':forms.TextInput(attrs={'class':'form-control mb-4'}),
+            'charity_name':forms.TextInput(attrs={'class':'form-control mb-4'}),
+            'charity_address_line_1':forms.TextInput(attrs={'class':'form-control mb-4'}),
+            'charity_address_line_2':forms.TextInput(attrs={'class':'form-control mb-4'}),
+            'charity_postcode':forms.TextInput(attrs={'class':'form-control mb-4'}),
+            'charity_website_url':forms.TextInput(attrs={'class':'form-control mb-4'}),
+            'charity_bio':forms.Textarea(attrs={'class':'form-control  mb-4'}),
+            'charity_country':forms.Select(attrs={'class':'form-control form-select mb-4'}),
+            'charity_operating_continent':forms.Select(attrs={'class':'form-control form-select mb-4'}),
+            'charity_image':forms.FileInput(attrs={'class':'form-control mb-4'}),
+            
+        }
 
 class CustomUserChangeForm(UserChangeForm):
 
@@ -37,6 +52,21 @@ class CustomUserChangeForm(UserChangeForm):
             'charity_operating_continent',
             'charity_image',
         )
+
+        widgets = {
+            'username':forms.TextInput(attrs={'class':'form-control mb-4 border'}),
+            'email':forms.TextInput(attrs={'class':'form-control mb-4'}),
+            'charity_name':forms.TextInput(attrs={'class':'form-control mb-4'}),
+            'charity_address_line_1':forms.TextInput(attrs={'class':'form-control mb-4'}),
+            'charity_address_line_2':forms.TextInput(attrs={'class':'form-control mb-4'}),
+            'charity_postcode':forms.TextInput(attrs={'class':'form-control mb-4'}),
+            'charity_website_url':forms.TextInput(attrs={'class':'form-control mb-4'}),
+            'charity_bio':forms.Textarea(attrs={'class':'form-control  mb-4'}),
+            'charity_country':forms.Select(attrs={'class':'form-control form-select mb-4'}),
+            'charity_operating_continent':forms.Select(attrs={'class':'form-control form-select mb-4'}),
+            'charity_image':forms.FileInput(attrs={'class':'form-control mb-4'}),
+            
+        }
 
 class EditCustomUserProfileForm(forms.Form):
     charity_name = forms.CharField(max_length=255)
