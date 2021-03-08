@@ -17,7 +17,8 @@ class CustomUserCreationForm(UserCreationForm):
             'charity_website_url',
             'charity_bio',
             'charity_country',
-            'charity_operating_continent' 
+            'charity_operating_continent',
+            'charity_image', 
         )
 
 class CustomUserChangeForm(UserChangeForm):
@@ -33,7 +34,8 @@ class CustomUserChangeForm(UserChangeForm):
             'charity_website_url',
             'charity_bio',
             'charity_country',
-            'charity_operating_continent' 
+            'charity_operating_continent',
+            'charity_image',
         )
 
 class EditCustomUserProfileForm(forms.Form):
@@ -56,3 +58,4 @@ class EditCustomUserProfileForm(forms.Form):
     )
 
     charity_operating_continent = forms.ChoiceField(choices = CONTINENT)
+    charity_image = forms.ImageField()
