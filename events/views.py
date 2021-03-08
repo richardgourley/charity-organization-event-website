@@ -79,3 +79,13 @@ def update_event_view(request, slug):
         form = EventForm(request.POST or None, instance=obj)
 
     return render(request, 'events/update_event.html', context={'form':form})
+
+'''
+@ returns - string
+Combines Random number + charity name + event name joined with '_' for uniqueness
+'''
+def slugify_event_name(charity_name, event_name):
+    random_num = random.randint(10,99)
+    split_names = (charity_name.lower()).split(' ') + (event_name.lower()).split(' ')
+    slug = str(random_num) + ('_') + ('_').join(split_names)
+    return str(slug)
