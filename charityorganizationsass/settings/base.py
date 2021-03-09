@@ -173,3 +173,4 @@ WAGTAIL_SITE_NAME = "charityorganizationsass"
 BASE_URL = 'http://example.com'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+LOGOUT_REDIRECT_URL = '/'
