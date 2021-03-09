@@ -4,30 +4,39 @@
 
 {% block content %}
 
-<h2>All charities</h2>
+<div class="container py-5">
 
-{% for user in users %}
-<div>
-<h3>{{ user.charity_name }}</h3>
-<img src="{{ user.charity_image.url }}" class="img-fluid" style="max-width:200px; max-height:150px;" />
-<p>COUNTRY: {{ user.charity_country.name }}</p>
-<p>BIO: {{ user.charity_bio }}</p>
-<p>OPERATING IN: {{ user.get_charity_operating_continent_display }}</p>
-<p><a href="{{ user.charity_website_url }}">Visit website</a><p>
-</div>
+	<div class="text-center pb-4">
+	    <h2>All charities</h2>
+    </div>
 
-<div>
-<h3>SEE EVENTS COMING UP FOR {{ user.charity_name }}:</h3>
-{% for event in user.event_set.all %}
-<p>
-	<a href="{% url 'events:event_detail' event.slug %}">
-	    {{ event.event_name }}
-    </a>
-</p>
+	{% for user in users %}
+	<div class="row py-3">
+		<div class="col-md-8">
+			<h3>{{ user.charity_name }}</h3>
+			<img src="{{ user.charity_image.url }}" class="img-fluid" style="max-width:200px; max-height:150px;" />
+			<p>COUNTRY: {{ user.charity_country.name }}</p>
+			<p>BIO: {{ user.charity_bio }}</p>
+			<p>OPERATING IN: {{ user.get_charity_operating_continent_display }}</p>
+			<p><a href="{{ user.charity_website_url }}">Visit website</a></p>
+		</div>
+
+		<div class="col-md-4">
+			<h3>EVENTS COMING UP FOR {{ user.charity_name }}:</h3>
+			{% for event in user.event_set.all %}
+				{% if event.approved == True %}
+					<p>
+						<a href="{% url 'events:event_detail' event.slug %}">
+				    		{{ event.event_name }}
+			    		</a>
+					</p>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+
 {% endfor %}
-</div>
 
-<hr />
-{% endfor %}
+</div>
 
 {% endblock %}
