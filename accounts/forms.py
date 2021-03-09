@@ -69,12 +69,12 @@ class CustomUserChangeForm(UserChangeForm):
         }
 
 class EditCustomUserProfileForm(forms.Form):
-    charity_name = forms.CharField(max_length=255)
-    charity_address_line_1 = forms.CharField(max_length=500)
-    charity_address_line_2 = forms.CharField(max_length=500)
-    charity_postcode = forms.CharField(max_length=50)
-    charity_website_url = forms.URLField(help_text="Please enter a full URL starting with 'http://www...")
-    charity_bio = forms.CharField (widget=forms.Textarea, max_length=2000)
+    charity_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control mb-4'}), max_length=255)
+    charity_address_line_1 = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control mb-4'}), max_length=500)
+    charity_address_line_2 = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control mb-4'}), max_length=500)
+    charity_postcode = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control mb-4'}), max_length=50)
+    charity_website_url = forms.URLField(widget=forms.TextInput(attrs={'class':'form-control mb-4'}), help_text="Please enter a full URL starting with 'http://www...")
+    charity_bio = forms.CharField (widget=forms.Textarea(attrs={'class':'form-control  mb-4'}), max_length=2000)
     charity_country = CountryField().formfield()
     
     CONTINENT = (
@@ -87,5 +87,5 @@ class EditCustomUserProfileForm(forms.Form):
         ('sa', 'South America'),
     )
 
-    charity_operating_continent = forms.ChoiceField(choices = CONTINENT)
-    charity_image = forms.ImageField()
+    charity_operating_continent = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control form-select mb-4'}), choices = CONTINENT)
+    charity_image = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control mb-4'}))
