@@ -11,9 +11,9 @@ class Event(models.Model):
     event_description = models.TextField(max_length=2000)
     event_date = models.DateField()
     event_url = models.URLField(help_text="Enter a url users can visit to learn more.")
-    approved = models.BooleanField(default=False)
     image = models.ImageField(upload_to='events', null=True)
     slug = models.SlugField(null=False, unique=True)
+    approved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.event_name
