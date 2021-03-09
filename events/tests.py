@@ -8,17 +8,18 @@ class EventModelTests(TestCase):
     def setUpTestData(cls):
         # Create CustomUser
         CustomUser.objects.create(
-                username="test_user_1",
+                username="test_user_2",
                 email="email@testcharity.com",
-                password='test_user_1',
+                password='test_user_2',
                 charity_name="Test Charity",
                 charity_address_line_1="Main Road",
                 charity_address_line_2="London",
                 charity_postcode="LON234",
-                charity_website_url="testcharity.com",
+                charity_website_url="http://www.testcharity.com",
                 charity_bio="A test charity number 1",
                 charity_country='AU',
                 charity_operating_continent="oc",
+                charity_image="test_user_image.jpg"
             )
 
         # Get test_user_1
@@ -42,7 +43,7 @@ class EventModelTests(TestCase):
                 event_description='Another lovely event.',
                 event_date=datetime.strptime("5-5-2021", "%d-%m-%Y"),
                 event_url='http://www.testevent.com/unapproved_event',
-                approved=True,
+                approved=False,
                 image='image2.jpg',
                 slug='88_test_charity_unapproved_event',
             )
@@ -59,12 +60,16 @@ class EventModelTests(TestCase):
             )
 
         def test_custom_user(self):
-	        custom_user_1 = CustomUser.objects.get(id=1)
-	        self.assertEqual(custom_user_1.username, "rich")
-	        self.assertEqual(custom_user_1.charity_country.name, 'Australia')
+            custom_user_1 = CustomUser.objects.get(id=1)
+            self.assertEqual(custom_user_1.username, "rich")
+            self.assertEqual(custom_user_1.charity_country.name, 'Australia')
 
+'''
+VIEW TESTS
+'''
+class EventViewTests(TestCase):
 
-
-
-
+    def test_home_page_status_code(self):
+        response = self.client.get('/')
+        self.assertEquals(response.status_code, 200)
 
