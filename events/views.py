@@ -89,3 +89,5 @@ def slugify_event_name(charity_name, event_name):
     split_names = (charity_name.lower()).split(' ') + (event_name.lower()).split(' ')
     slug = str(random_num) + ('_') + ('_').join(split_names)
     return str(slug)
+
+
