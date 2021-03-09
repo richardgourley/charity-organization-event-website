@@ -3,17 +3,21 @@
 {% block title %}All events{% endblock %}
 
 {% block content %}
-<h1>All events</h1>
 
-{% for event in object_list %}
-  <ul>
-    <li><a href="{{ event.get_absolute_url }}">{{ event.event_name }}</a></li>
-    <img src="{{ event.image.url }}" class="img-fluid" style="max-width:200px; max-height:150px;" />
-    <p>{{ event.event_description }}</p>
-    <p>{{ event.event_date }}</p>
-    <p>CHARITY: {{ event.user.charity_name }}</p>
-  </ul>
-{% endfor %}
+<div class="container py-5">
+	<div class="text-center pb-4">
+	    <h2>All events</h2>
+    </div>
 
+	{% for event in object_list %}
+	  <ul>
+	    <li><a href="{{ event.get_absolute_url }}">{{ event.event_name }}</a></li>
+	    <img src="{{ event.image.url }}" class="img-fluid" style="max-width:200px; max-height:150px;" />
+	    <p>{{ event.event_description }}</p>
+	    <p>{{ event.event_date }}</p>
+	    <p>CHARITY: {{ event.user.charity_name }}</p>
+	  </ul>
+	{% endfor %}
+</div>
 
 {% endblock %}
