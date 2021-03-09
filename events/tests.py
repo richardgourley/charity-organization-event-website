@@ -3,7 +3,7 @@ from datetime import datetime
 from .models import Event
 from accounts.models import CustomUser
 
-class EventTests(TestCase):
+class EventModelTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Create CustomUser
@@ -57,5 +57,14 @@ class EventTests(TestCase):
                 image='image3.jpg',
                 slug='75_test_charity_date_in_the_past_event',
             )
+
+        def test_custom_user(self):
+	        custom_user_1 = CustomUser.objects.get(id=1)
+	        self.assertEqual(custom_user_1.username, "rich")
+	        self.assertEqual(custom_user_1.charity_country.name, 'Australia')
+
+
+
+
 
 
