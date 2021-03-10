@@ -13,6 +13,8 @@ from events.models import Event
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from django.core.files.uploadedfile import SimpleUploadedFile
+
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
@@ -22,9 +24,9 @@ class SignUpView(CreateView):
 @login_required
 def edit_custom_user_profile(request):
     current_user = CustomUser.objects.get(id=request.user.id)
-    
+
     if request.method == "POST":
-        form = EditCustomUserProfileForm(request.POST, request.FILES)
+        form = EditCustomUserProfileForm(request.POST, request.FILES, instance=current_user)
         if form.is_valid():
             current_user.charity_name = form.cleaned_data['charity_name']
             current_user.charity_address_line_1 = form.cleaned_data['charity_address_line_1']
@@ -42,23 +44,9 @@ def edit_custom_user_profile(request):
                 'form':form
             }
     else:
-        data = {
-            'charity_name':current_user.charity_name,
-            'charity_address_line_1':current_user.charity_address_line_1,
-            'charity_address_line_2':current_user.charity_address_line_2,
-            'charity_postcode':current_user.charity_postcode,
-            'charity_website_url':current_user.charity_website_url,
-            'charity_bio':current_user.charity_bio,
-            'charity_country':current_user.charity_country,
-            'charity_operating_continent':current_user.charity_operating_continent,
-            'charity_image':current_user.charity_image
-        }
-        form = EditCustomUserProfileForm(initial=data)
-        
-        context = {
-            'form':form
-        }
-
+        form = EditCustomUserProfileForm(request.POST or None, request.FILES or None, instance=current_user)
+        context = {'form':form}
+    
     return render(request, 'accounts/edit_custom_user_profile.html', context=context)
 
 @login_required
@@ -77,7 +65,7 @@ def account_profile_page(request):
 
 # A charity list view - represented as url - 'all_charities' - see main urls.py
 def charity_list_view(request):
-    users = CustomUser.objects.all().filter(approved=True)
+    users = CustomUser.objects.all().filter(approved=True).filter(is_staff=False)
     return render(request, 'accounts/charity_list.html', context={'users':users})
 
 
