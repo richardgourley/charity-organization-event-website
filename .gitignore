@@ -3,3 +3,5 @@
 # Ignore auto generated folders
 __pycache__/
 migrations/
+
+media/
