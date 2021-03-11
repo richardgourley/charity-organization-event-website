@@ -5,38 +5,47 @@
 {% block content %}
 
 <div class="container py-5">
-
-	<div class="text-center pb-4">
-	    <h2>All charities</h2>
+	<div class="text-center pb-5">
+	    <h2 class="font-weight-bold">All charities</h2>
     </div>
-
-	{% for user in users %}
-	<div class="row py-3">
-		<div class="col-md-8">
+    {% for user in users %}
+	<div class="row mb-5">
+		<div class="col-md-5 pb-4">
 			<h3>{{ user.charity_name }}</h3>
-			<img src="{{ user.charity_image.url }}" class="img-fluid" style="max-width:200px; max-height:150px;" />
-			<p>COUNTRY: {{ user.charity_country.name }}</p>
-			<p>BIO: {{ user.charity_bio }}</p>
-			<p>OPERATING IN: {{ user.get_charity_operating_continent_display }}</p>
-			<p><a href="{{ user.charity_website_url }}">Visit website</a></p>
+			<img src="{{ user.charity_image.url }}" class="card-img-top" alt="...">
 		</div>
-
-		<div class="col-md-4">
-			<h3>EVENTS COMING UP FOR {{ user.charity_name }}:</h3>
-			{% for event in user.event_set.all %}
-				{% if event.approved == True %}
-					<p>
-						<a href="{% url 'events:event_detail' event.slug %}">
-				    		{{ event.event_name }}
-			    		</a>
-					</p>
-				{% endif %}
-			{% endfor %}
+		<div class="col-md-6 pb-4">
+			<h5 class="font-weight-bold">CHARITY BIO:</h5>
+			<hr>
+			<p class="card-text">{{ user.charity_bio|linebreaks }}</p>
 		</div>
-	</div>
-
-{% endfor %}
-
+		<div class="col-md-4 shadow-sm bg-light p-3 mb-4">
+			<p class="card-text"><span class="font-weight-bold">COUNTRY: </span>{{ user.charity_country.name }}</p>
+		    <p class="card-text"><span class="font-weight-bold">OPERATING IN: </span>{{ user.get_charity_operating_continent_display }}</p>
+		    <p class="card-text"><span class="font-weight-bold">WEBSITE URL: </span><a href="{{ user.charity_website_url }}">
+		    {{ user.charity_website_url }}</p></a>
+		</div>
+		<div class="col-md-4 mb-4">
+			{% if user.event_set.all %}
+			<div class="font-weight-bold card-header">
+			    Upcoming Events
+			</div>
+			<ul class="list-group list-group-flush">
+					{% for event in user.event_set.all %}
+						{% if event.approved == True %}
+							<li class="list-group-item">
+								<a href="{% url 'events:event_detail' event.slug %}">
+						    		{{ event.event_name }}
+					    		</a>
+					    	</li>
+						{% endif %}
+					{% endfor %}
+			</ul>
+			{% endif %}
+		</div>
+    </div>
+    <hr class="pb-5">
+    {% endfor %}
 </div>
 
 {% endblock %}
