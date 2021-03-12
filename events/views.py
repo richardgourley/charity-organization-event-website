@@ -34,7 +34,7 @@ def create_event_view(request):
     current_user = CustomUser.objects.get(id=request.user.id)
 
     if request.method == 'POST':
-        form = EventForm(request.POST, request.FILES)
+        form = EventForm(request.POST, request.FILES, instance=current_user)
         if form.is_valid():
             charity_name = current_user.charity_name
             event_name = form.cleaned_data['event_name']
@@ -66,7 +66,7 @@ def update_event_view(request, slug):
         return HttpResponseRedirect(reverse('accounts:profile'))
 
     if request.method == 'POST':
-        form = EventForm(request.POST, request.FILES)
+        form = EventForm(request.POST, request.FILES, instance=obj)
         if form.is_valid():
             obj.event_name = form.cleaned_data['event_name']
             obj.event_description = form.cleaned_data['event_description']
@@ -76,7 +76,7 @@ def update_event_view(request, slug):
             obj.save()
             return HttpResponseRedirect(reverse('accounts:profile'))
     else:
-        form = EventForm(request.POST or None, instance=obj)
+        form = EventForm(request.POST or None, request.FILES or None, instance=obj)
 
     return render(request, 'events/update_event.html', context={'form':form})
 
