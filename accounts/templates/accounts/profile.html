@@ -7,8 +7,18 @@
 
 {% block content %}
 
-<div class="container">
-	<h1>Your Profile</h1>
+<div class="container py-4">
+	
+	<div class="py-4">
+		<a href="{% url 'accounts:editprofile' %}">
+	    <button class="btn btn-primary">Edit your Profile</button>
+		</a>
+		<a href="{% url 'events:create_event' %}">
+	    <button class="btn btn-primary">Create an Event</button>
+		</a>
+	</div>
+
+	<h2 class="font-weight-bold">Your Profile</h2>
 
 	<p><strong>USERNAME: </strong>{{ current_user }}</p>
 	<p><strong>EMAIL: {{ current_user.email_adress }}</strong></p>
@@ -24,14 +34,9 @@
 	<p><strong>OPERATING IN: </strong>{{ current_user.get_charity_operating_continent_display }}</p>
 
 	<p><strong>WEBSITE URL: </strong>{{ current_user.charity_website_url }}</p>
-	<p><strong>BIO (As seen by website visitors): </strong>{{ current_user.charity_bio }}</p>
+	<p><strong>BIO (As seen by website visitors): </strong>{{ current_user.charity_bio|linebreaks}}</p>
 
-    <h3>Want to change something?</h3>
-	<a href="{% url 'accounts:editprofile' %}">
-	    <button class="btn btn-primary">Edit your profile</button>
-	</a>
-
-	<h1>EVENTS:</h1>
+	<h1>Events:</h1>
 	<p>You currently have {{ num_events}} event/s created.</p>
 
 	{% for event in events %}
