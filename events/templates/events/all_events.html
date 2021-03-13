@@ -5,19 +5,33 @@
 {% block content %}
 
 <div class="container py-5">
-	<div class="text-center pb-4">
-	    <h2>All events</h2>
+	<div class="text-center pb-5">
+	    <h2 class="font-weight-bold">All events</h2>
     </div>
 
+    <div class="row">
 	{% for event in object_list %}
-	  <ul>
-	    <li><a href="{{ event.get_absolute_url }}">{{ event.event_name }}</a></li>
-	    <img src="{{ event.image.url }}" class="img-fluid" style="max-width:200px; max-height:150px;" />
-	    <p>{{ event.event_description }}</p>
-	    <p>{{ event.event_date }}</p>
-	    <p>CHARITY: {{ event.user.charity_name }}</p>
-	  </ul>
+		<div class="col-md-4 mb-4">
+			<div class="card h-100">
+				<img src="{{ event.image.url }}" class="img-fluid card-img-top" style="max-height:200px;" />
+				<div class="card-body">
+					<a href="{{ event.get_absolute_url }}">
+						<h4>{{ event.event_name }}</h4>
+					</a>
+		    		<p>DATE: {{ event.event_date }}</p>
+		    		<p>CHARITY: {{ event.user.charity_name }}</p>
+		    		<p>{{ event.event_description|linebreaks }}</p>
+				</div>
+				<div class="card-footer">
+					<a href="{{ event.get_absolute_url }}">
+						<button class="btn btn-primary">Learn more</button>
+					</a>
+				</div>
+			</div>
+	  	</div>
 	{% endfor %}
+    </div>
+
 </div>
 
 {% endblock %}
