@@ -8,7 +8,7 @@ class EventModelTests(TestCase):
     def setUpTestData(cls):
         # Create CustomUser
         CustomUser.objects.create(
-                username="test_user_2",
+                username="test_user_1",
                 email="email@testcharity.com",
                 password='test_user_2',
                 charity_name="Test Charity",
@@ -59,10 +59,10 @@ class EventModelTests(TestCase):
                 slug='75_test_charity_date_in_the_past_event',
             )
 
-        def test_custom_user(self):
-            custom_user_1 = CustomUser.objects.get(id=1)
-            self.assertEqual(custom_user_1.username, "rich")
-            self.assertEqual(custom_user_1.charity_country.name, 'Australia')
+    def test_custom_user(self):
+        custom_user_1 = CustomUser.objects.get(id=1)
+        self.assertEqual(custom_user_1.username, "rich")
+        self.assertEqual(custom_user_1.charity_country.name, 'Australia')
 
 '''
 VIEW TESTS
