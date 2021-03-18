@@ -68,3 +68,8 @@ class EventModelTests(TestCase):
         event = Event.objects.get(event_name="Approved event")
         field_label = event._meta.get_field('event_name').verbose_name
         self.assertEqual(field_label, 'event name')
+
+    def test_event_name_max_length(self):
+        event = Event.objects.get(event_name="Approved event")
+        max_length = event._meta.get_field('event_name').max_length
+        self.assertEqual(max_length, 255)
