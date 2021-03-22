@@ -64,6 +64,11 @@ class EventModelTests(TestCase):
         self.assertEqual(custom_user_1.username, "test_user_1")
         self.assertEqual(custom_user_1.charity_country.name, 'Australia')
 
+    def test_event_user_username(self):
+        event = Event.objects.get(event_name="Approved event")
+        user = event.user
+        self.assertEqual(user.username, 'test_user_1')
+
     def test_event_name_verbose_name(self):
         event = Event.objects.get(event_name="Approved event")
         field_label = event._meta.get_field('event_name').verbose_name
