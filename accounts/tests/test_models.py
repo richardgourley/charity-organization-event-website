@@ -28,3 +28,8 @@ class CustomUserModelTests(TestCase):
     	self.assertEqual(custom_user.email, "email@test_charity.com")
     	self.assertEqual(custom_user.charity_name, "Test Charity")
     	self.assertEqual(custom_user.charity_bio, "A test charity number 1")
+
+    def test_custom_user_charity_name_max_length(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        max_length = custom_user._meta.get_field('charity_name').max_length
+        self.assertEqual(max_length, 255)
