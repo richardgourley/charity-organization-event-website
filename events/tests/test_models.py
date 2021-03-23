@@ -98,3 +98,18 @@ class EventModelTests(TestCase):
         event = Event.objects.get(event_name='Approved event')
         help_text = event._meta.get_field('event_url').help_text
         self.assertEqual(help_text, 'Enter a url users can visit to learn more.')
+
+    def test_event_image_verbose_name(self):
+        event = Event.objects.get(event_name="Approved event")
+        field_label = event._meta.get_field('image').verbose_name
+        self.assertEqual(field_label, 'image')
+
+    def test_event_image_uploads_to(self):
+        event = Event.objects.get(event_name="Approved event")
+        upload_to = event._meta.get_field('image').upload_to
+        self.assertEqual(upload_to, 'events')
+
+    def test_event_image_null_is_true(self):
+        event = Event.objects.get(event_name="Approved event")
+        null = event._meta.get_field('image').null
+        self.assertEqual(null, True)
