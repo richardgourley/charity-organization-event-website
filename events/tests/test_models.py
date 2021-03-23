@@ -128,3 +128,17 @@ class EventModelTests(TestCase):
         event = Event.objects.get(event_name="Approved event")
         default = event._meta.get_field('approved').default
         self.assertEqual(default, False)
+
+    def test_event_str(self):
+        event = Event.objects.get(event_name="Approved event")
+        event_str = event.__str__()
+        self.assertEqual(event_str, 'Approved event')
+
+    def test_event_str_equal_to_event_name(self):
+        event = Event.objects.get(event_name="Approved event")
+        self.assertEqual(event.__str__(), event.event_name)
+
+    def test_event_get_absolute_url(self):
+        event = Event.objects.get(event_name="Approved event")
+        absolute_url = event.get_absolute_url()
+        self.assertEqual(absolute_url, '/events/detail/88_test_charity_approved_event')
