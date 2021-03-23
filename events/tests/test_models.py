@@ -83,3 +83,8 @@ class EventModelTests(TestCase):
         event = Event.objects.get(event_name="Approved event")
         field_label = event._meta.get_field('event_description').verbose_name
         self.assertEqual(field_label, 'event description')
+
+    def test_event_date_verbose_name(self):
+        event = Event.objects.get(event_name="Approved event")
+        field_label = event._meta.get_field('event_date').verbose_name
+        self.assertEqual(field_label, 'event date')
