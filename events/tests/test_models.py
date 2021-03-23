@@ -123,3 +123,8 @@ class EventModelTests(TestCase):
         event = Event.objects.get(event_name="Approved event")
         unique = event._meta.get_field('slug').unique
         self.assertEqual(unique, True)
+
+    def test_event_approved_field_default_is_false(self):
+        event = Event.objects.get(event_name="Approved event")
+        default = event._meta.get_field('approved').default
+        self.assertEqual(default, False)
