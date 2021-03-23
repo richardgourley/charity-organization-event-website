@@ -113,3 +113,13 @@ class EventModelTests(TestCase):
         event = Event.objects.get(event_name="Approved event")
         null = event._meta.get_field('image').null
         self.assertEqual(null, True)
+
+    def test_event_slug_null_is_false(self):
+        event = Event.objects.get(event_name="Approved event")
+        null = event._meta.get_field('slug').null
+        self.assertEqual(null, False)
+
+    def test_event_slug_unique_is_true(self):
+        event = Event.objects.get(event_name="Approved event")
+        unique = event._meta.get_field('slug').unique
+        self.assertEqual(unique, True)
