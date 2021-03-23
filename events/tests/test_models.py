@@ -88,3 +88,13 @@ class EventModelTests(TestCase):
         event = Event.objects.get(event_name="Approved event")
         field_label = event._meta.get_field('event_date').verbose_name
         self.assertEqual(field_label, 'event date')
+
+    def test_event_url_verbose_name(self):
+        event = Event.objects.get(event_name="Approved event")
+        field_label = event._meta.get_field('event_url').verbose_name
+        self.assertEqual(field_label, 'event url')
+
+    def test_event_url_help_text(self):
+        event = Event.objects.get(event_name='Approved event')
+        help_text = event._meta.get_field('event_url').help_text
+        self.assertEqual(help_text, 'Enter a url users can visit to learn more.')
