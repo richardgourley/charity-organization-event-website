@@ -103,3 +103,12 @@ class CustomUserModelTests(TestCase):
         custom_user = CustomUser.objects.get(username="test_user_1")
         help_text = custom_user._meta.get_field('charity_image').help_text
         self.assertEqual(help_text, 'Upload a charity logo.')
+
+    def test_approved_field_default(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        default = custom_user._meta.get_field('approved').default
+        self.assertEqual(default, False)
+
+    def test_custom_user_string_equal_to_custom_user_username(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        self.assertTrue(custom_user.__str__() == custom_user.username)
