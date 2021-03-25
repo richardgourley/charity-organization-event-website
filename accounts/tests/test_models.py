@@ -63,3 +63,18 @@ class CustomUserModelTests(TestCase):
         custom_user = CustomUser.objects.get(username="test_user_1")
         help_text = custom_user._meta.get_field('charity_bio').help_text
         self.assertEqual(help_text, 'Add a short description as to what your charity does and who it benefits.')
+
+    def test_charity_country_field_name(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        country_name = custom_user.charity_country.country_name
+        self.assertEqual(country_name, 'Australia')
+
+    def test_charity_operating_continent_max_length(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        max_length = custom_user._meta.get_field('charity_operating_continent').max_length
+        self.assertEqual(max_length, 2)
+
+    def test_charity_operating_continent_choices_length(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        length = len(custom_user._meta.get_field('charity_operating_continent').choices)
+        self.assertEqual(length, 7)
