@@ -48,3 +48,18 @@ class CustomUserModelTests(TestCase):
         custom_user = CustomUser.objects.get(username="test_user_1")
         max_length = custom_user._meta.get_field('charity_postcode').max_length
         self.assertEqual(max_length, 50)
+
+    def test_charity_website_url_help_text(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        help_text = custom_user._meta.get_field('charity_website_url').help_text
+        self.assertEqual(help_text, "Please enter a full URL starting with 'http://www...'")
+
+    def test_charity_bio_max_length(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        max_length = custom_user._meta.get_field('charity_bio').max_length
+        self.assertEqual(max_length, 2000)
+
+    def test_charity_bio_help_text(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        help_text = custom_user._meta.get_field('charity_bio').help_text
+        self.assertEqual(help_text, 'Add a short description as to what your charity does and who it benefits.')
