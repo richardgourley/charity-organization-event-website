@@ -43,3 +43,8 @@ class CustomUserModelTests(TestCase):
         custom_user = CustomUser.objects.get(username="test_user_1")
         max_length = custom_user._meta.get_field('charity_address_line_2').max_length
         self.assertEqual(max_length, 500)
+
+    def test_charity_postcode_max_length(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        max_length = custom_user._meta.get_field('charity_postcode').max_length
+        self.assertEqual(max_length, 50)
