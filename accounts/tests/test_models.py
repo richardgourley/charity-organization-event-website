@@ -78,3 +78,13 @@ class CustomUserModelTests(TestCase):
         custom_user = CustomUser.objects.get(username="test_user_1")
         length = len(custom_user._meta.get_field('charity_operating_continent').choices)
         self.assertEqual(length, 7)
+
+    def test_charity_operating_continent_default(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        default = custom_user._meta.get_field('charity_operating_continent').default
+        self.assertEqual(default, 'oc')
+
+    def test_charity_operating_continent_help_text(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        help_text = custom_user._meta.get_field('charity_operating_continent').help_text
+        self.assertEqual(help_text, 'Which continent of the world do you mainly operate in? (Alternatively, select "We operate mainly in the country the charity is based.")')
