@@ -88,3 +88,18 @@ class CustomUserModelTests(TestCase):
         custom_user = CustomUser.objects.get(username="test_user_1")
         help_text = custom_user._meta.get_field('charity_operating_continent').help_text
         self.assertEqual(help_text, 'Which continent of the world do you mainly operate in? (Alternatively, select "We operate mainly in the country the charity is based.")')
+
+    def test_charity_image_upload_to(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        upload_to = custom_user._meta.get_field('charity_image').upload_to
+        self.assertEqual(upload_to, 'charities')
+
+    def test_charity_image_field_null_is_true(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        is_null = custom_user._meta.get_field('charity_image').null
+        self.assertEqual(is_null, True)
+
+    def test_charity_image_help_text(self):
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        help_text = custom_user._meta.get_field('charity_image').help_text
+        self.assertEqual(help_text, 'Upload a charity logo.')
