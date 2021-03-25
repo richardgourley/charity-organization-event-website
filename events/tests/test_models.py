@@ -136,7 +136,7 @@ class EventModelTests(TestCase):
 
     def test_event_str_equal_to_event_name(self):
         event = Event.objects.get(event_name="Approved event")
-        self.assertEqual(event.__str__(), event.event_name)
+        self.assertTrue(event.__str__() == event.event_name)
 
     def test_event_get_absolute_url(self):
         event = Event.objects.get(event_name="Approved event")
