@@ -25,6 +25,9 @@ class SignUpView(CreateView):
 def edit_custom_user_profile(request):
     current_user = CustomUser.objects.get(id=request.user.id)
 
+    if current_user.is_staff == True:
+        return HttpResponseRedirect('/')
+
     if request.method == "POST":
         form = EditCustomUserProfileForm(request.POST, request.FILES, instance=current_user)
         if form.is_valid():
@@ -52,6 +55,9 @@ def edit_custom_user_profile(request):
 @login_required
 def account_profile_page(request):
     current_user = CustomUser.objects.get(id=request.user.id)
+
+    if current_user.is_staff == True:
+        return HttpResponseRedirect('/')
 
     events = Event.objects.all().filter(user=current_user)
     num_events = str(len(events))
