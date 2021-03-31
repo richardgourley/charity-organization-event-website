@@ -55,3 +55,8 @@ class EditCustomUserProfileTests(TestCase):
             charity_image="test_user_image.jpg",
             approved=True
         )
+
+    def test_url_redirects_if_not_logged_in(self):
+        response = self.client.get('/accounts/editprofile/')
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/accounts/login/?next=/accounts/editprofile/')
