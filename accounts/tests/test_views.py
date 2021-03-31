@@ -60,3 +60,8 @@ class EditCustomUserProfileTests(TestCase):
         response = self.client.get('/accounts/editprofile/')
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/accounts/login/?next=/accounts/editprofile/')
+
+    def test_url_name_redirects_if_not_logged_in(self):
+        response = self.client.get(reverse('accounts:editprofile'))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/accounts/login/?next=/accounts/editprofile/')
