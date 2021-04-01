@@ -260,6 +260,10 @@ class CharityListViewTests(TestCase):
         response = self.client.get('/all_charities/')
         self.assertEqual(response.status_code, 200)
 
+    def test_correct_template_used(self):
+        response = self.client.get(reverse('all_charities'))
+        self.assertTemplateUsed(response, 'accounts/charity_list.html')
+
     def test_accessible_by_url_name(self):
         response = self.client.get(reverse('all_charities'))
         self.assertEqual(response.status_code, 200)
