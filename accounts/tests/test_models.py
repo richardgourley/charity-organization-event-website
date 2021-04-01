@@ -4,10 +4,10 @@ from datetime import datetime
 from accounts.models import CustomUser
 
 class CustomUserModelTests(TestCase):
-	@classmethod
-	def setUpTestData(cls):
-		#Create Custom User
-		CustomUser.objects.create(
+    @classmethod
+    def setUpTestData(cls):
+        #Create Custom User
+        CustomUser.objects.create(
             username="test_user_1",
             email="email@testcharity.com",
             password='test_user_1',
@@ -23,11 +23,11 @@ class CustomUserModelTests(TestCase):
         )
 
     def test_custom_user_details_saved_correctly(self):
-    	custom_user = CustomUser.objects.get(username="test_user_1")
-    	self.assertEqual(custom_user.username, "test_user_1")
-    	self.assertEqual(custom_user.email, "email@test_charity.com")
-    	self.assertEqual(custom_user.charity_name, "Test Charity")
-    	self.assertEqual(custom_user.charity_bio, "A test charity number 1")
+        custom_user = CustomUser.objects.get(username="test_user_1")
+        self.assertEqual(custom_user.username, "test_user_1")
+        self.assertEqual(custom_user.email, "email@test_charity.com")
+        self.assertEqual(custom_user.charity_name, "Test Charity")
+        self.assertEqual(custom_user.charity_bio, "A test charity number 1")
 
     def test_charity_name_verbose_name(self):
         custom_user = CustomUser.objects.get(username="test_user_1")
@@ -116,3 +116,4 @@ class CustomUserModelTests(TestCase):
     def test_custom_user_string_equal_to_custom_user_username(self):
         custom_user = CustomUser.objects.get(username="test_user_1")
         self.assertTrue(custom_user.__str__() == custom_user.username)
+
