@@ -166,6 +166,11 @@ class AccountProfileViewTests(TestCase):
         response = self.client.get(reverse('accounts:profile'))
         self.assertEqual(response.status_code, 200)
 
+    def test_correct_template_used(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get(reverse('accounts:profile'))
+        self.assertTemplateUsed(response, 'accounts/profile.html')
+
 class CharityListViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):
