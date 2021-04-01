@@ -78,6 +78,17 @@ class EditCustomUserProfileTests(TestCase):
         response = self.client.get(reverse('accounts:editprofile'))
         self.assertTemplateUsed(response, 'accounts/edit_custom_user_profile.html')
 
+    def test_logged_in_user_details_appear_in_form(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get(reverse('accounts:editprofile'))
+        # Test address details appear as form values
+        self.assertTrue('value="Test Charity"' in str(response.content))
+        self.assertTrue('value="Main Road"' in str(response.content))
+        self.assertTrue('value="London"' in str(response.content))
+        self.assertTrue('value="LON234"' in str(response.content))
+        self.assertTrue('value="http://www.testcharity.com"' in str(response.content))
+        self.assertTrue('test_user_image.jpg' in str(response.content))
+
 class CharityListViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):
