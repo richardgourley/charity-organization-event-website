@@ -89,6 +89,62 @@ class EditCustomUserProfileTests(TestCase):
         self.assertTrue('value="http://www.testcharity.com"' in str(response.content))
         self.assertTrue('test_user_image.jpg' in str(response.content))
 
+class AccountProfileViewTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        #Create Approved Custom User
+        CustomUser.objects.create(
+            username="test_user_1",
+            email="email@testcharity.com",
+            password='test_user_1',
+            charity_name="Test Charity",
+            charity_address_line_1="Main Road",
+            charity_address_line_2="London",
+            charity_postcode="LON234",
+            charity_website_url="http://www.testcharity.com",
+            charity_bio="A test charity number 1",
+            charity_country='AU',
+            charity_operating_continent="oc",
+            charity_image="test_user_image.jpg",
+            approved=True
+        )
+
+        #Create Staff Member - is_staff = True, approved = False (default)
+        CustomUser.objects.create(
+            username="staff_member",
+            email="staff_member@testcharity.com",
+            password='staff_member',
+            charity_name="None",
+            charity_address_line_1="None",
+            charity_address_line_2="None",
+            charity_postcode="None",
+            charity_website_url="http://www.charityorganizationsass.com",
+            charity_bio="None",
+            charity_country='AU',
+            charity_operating_continent="oc",
+            charity_image="test_user_image.jpg",
+            is_staff=True
+        )
+
+        # Create an approved event for the approved user - test_user_1
+        #### NOTE - Unapproved events and events with dates in past are tested in 'Events'
+
+        # Get test_user_1
+        test_user_1 = CustomUser.objects.get(username="test_user_1")
+
+        # Create an approved event for the approved user - test_user_1
+        #### NOTE - Unapproved events and events with dates in past are tested in 'Events'
+        Event.objects.create(
+                user=test_user_1,
+                event_name='Approved event',
+                event_description='A lovely event.',
+                event_date=timezone.now() + datetime.timedelta(days=10),
+                event_url='http://www.testevent.com/approved_event',
+                approved=True,
+                image='image1.jpg',
+                slug='88_test_charity_approved_event'
+            )
+
 class CharityListViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):
