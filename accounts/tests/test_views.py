@@ -29,7 +29,7 @@ class SignUpViewTests(TestCase):
         response = self.client.get('/accounts/signup/')
         self.assertEqual(response.status_code, 200)
 
-    def test_signup_view_accessible_by_url_name(self):
+    def test_signup_view_accessible_by_reverse_url(self):
         response = self.client.get(reverse('accounts:signup'))
         self.assertEqual(response.status_code, 200)
 
