@@ -68,6 +68,11 @@ class EditCustomUserProfileTests(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/accounts/login/?next=/accounts/editprofile/')
 
+    def test_logged_in_user_returns_200(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get(reverse('accounts:editprofile'))
+        self.assertEqual(response.status_code, 200)
+
 class CharityListViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):
