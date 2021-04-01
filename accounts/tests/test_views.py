@@ -155,6 +155,12 @@ class AccountProfileViewTests(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/accounts/login/?next=/accounts/profile/')
 
+    # Expecting staff members to be redirected - profile pages are for charity owners
+    def test_logged_in_staff_member_redirects(self):
+        login self.client.login(username='staff_member', password='staff_member')
+        response = self.client.get(reverse('accounts:profile'))
+        self.assertEqual(response.status_code, 302)
+
 class CharityListViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):
