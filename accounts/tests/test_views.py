@@ -1,4 +1,6 @@
 from django.test import TestCase
+from datetime import datetime
+from django.utils import timezone
 from .models import Event
 from accounts.models import CustomUser
 from django.urls import reverse
