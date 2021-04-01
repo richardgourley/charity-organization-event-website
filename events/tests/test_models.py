@@ -1,5 +1,6 @@
 from django.test import TestCase
 from datetime import datetime
+from django.utils import timezone
 from .models import Event
 from accounts.models import CustomUser
 
@@ -10,7 +11,7 @@ class EventModelTests(TestCase):
         CustomUser.objects.create(
                 username="test_user_1",
                 email="email@testcharity.com",
-                password='test_user_2',
+                password='test_user_1',
                 charity_name="Test Charity",
                 charity_address_line_1="Main Road",
                 charity_address_line_2="London",
@@ -30,7 +31,7 @@ class EventModelTests(TestCase):
                 user=test_user_1,
                 event_name='Approved event',
                 event_description='A lovely event.',
-                event_date=datetime.strptime("8-10-2021", "%d-%m-%Y"),
+                event_date=timezone.now() + datetime.timedelta(days=10),
                 event_url='http://www.testevent.com/approved_event',
                 approved=True,
                 image='image1.jpg',
@@ -41,7 +42,7 @@ class EventModelTests(TestCase):
                 user=test_user_1,
                 event_name='Unapproved event',
                 event_description='Another lovely event.',
-                event_date=datetime.strptime("5-5-2021", "%d-%m-%Y"),
+                event_date=timezone.now() + datetime.timedelta(days=10),
                 event_url='http://www.testevent.com/unapproved_event',
                 approved=False,
                 image='image2.jpg',
@@ -52,7 +53,7 @@ class EventModelTests(TestCase):
                 user=test_user_1,
                 event_name='Date in the past event',
                 event_description='An event with a date in the past.',
-                event_date=datetime.strptime("8-10-2020", "%d-%m-%Y"),
+                event_date=timezone.now() - datetime.timedelta(weeks=6),
                 event_url='http://www.testevent.com/date_in_the_past_event',
                 approved=True,
                 image='image3.jpg',
@@ -142,3 +143,8 @@ class EventModelTests(TestCase):
         event = Event.objects.get(event_name="Approved event")
         absolute_url = event.get_absolute_url()
         self.assertEqual(absolute_url, '/events/detail/88_test_charity_approved_event')
+
+
+
+
+
