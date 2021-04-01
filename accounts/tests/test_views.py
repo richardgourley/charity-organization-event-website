@@ -171,6 +171,37 @@ class AccountProfileViewTests(TestCase):
         response = self.client.get(reverse('accounts:profile'))
         self.assertTemplateUsed(response, 'accounts/profile.html')
 
+    def test_logged_in_user_details_appear_in_content(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get(reverse('accounts:profile'))
+        self.assertTrue('test_user_1' in str(response.content))
+        self.assertTrue('Test Charity' in str(response.content))
+        self.assertTrue('Main Road' in str(response.content))
+        self.assertTrue('London' in str(response.content))
+        self.assertTrue('http://www.testcharity.com' in str(response.content))
+        self.assertTrue('A test charity number 1' in str(response.content))
+        self.assertTrue('Australia' in str(response.content))
+        self.assertTrue('We operate mainly in the country the charity is based.' in str(response.content))
+
+    def test_event_name_and_description_appears_in_content(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get(reverse('accounts:profile'))
+        self.assertTrue('Approved event' in str(response.content))
+        self.assertTrue('A lovely event.' in str(response.content))
+
+    # Test the event created by test_user_1 appears in 'event' context variable
+    def test_logged_in_user_event_appears_in_events_context(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get(reverse('accounts:profile'))
+        event = Event.objects.get(slug='88_test_charity_approved_event')
+        self.assertTrue(event in response.context['events'])
+
+    # Test 'num_events' is 1 in profile page context
+    def test_logged_in_user_correct_num_events_in_context(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get(reverse('accounts:profile'))
+        self.assertEqual(response.context['num_events'], '1')
+
 class CharityListViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):
