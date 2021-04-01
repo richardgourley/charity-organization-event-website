@@ -38,28 +38,6 @@ class EventModelTests(TestCase):
                 slug='88_test_charity_approved_event',
             )
 
-        Event.objects.create(
-                user=test_user_1,
-                event_name='Unapproved event',
-                event_description='Another lovely event.',
-                event_date=timezone.now() + datetime.timedelta(days=10),
-                event_url='http://www.testevent.com/unapproved_event',
-                approved=False,
-                image='image2.jpg',
-                slug='88_test_charity_unapproved_event',
-            )
-
-        Event.objects.create(
-                user=test_user_1,
-                event_name='Date in the past event',
-                event_description='An event with a date in the past.',
-                event_date=timezone.now() - datetime.timedelta(weeks=6),
-                event_url='http://www.testevent.com/date_in_the_past_event',
-                approved=True,
-                image='image3.jpg',
-                slug='75_test_charity_date_in_the_past_event',
-            )
-
     def test_custom_user(self):
         custom_user_1 = CustomUser.objects.get(id=1)
         self.assertEqual(custom_user_1.username, "test_user_1")
