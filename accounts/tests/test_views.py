@@ -150,6 +150,11 @@ class AccountProfileViewTests(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/accounts/login/?next=/accounts/profile/')
 
+    def test_reverse_url_redirects_if_not_logged_in(self):
+        response = self.client.get(reverse('accounts:profile'))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/accounts/login/?next=/accounts/profile/')
+
 class CharityListViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):
