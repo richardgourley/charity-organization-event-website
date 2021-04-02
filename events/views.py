@@ -33,6 +33,9 @@ class EventDetailView(generic.DetailView):
 def create_event_view(request):
     current_user = CustomUser.objects.get(id=request.user.id)
 
+    if current_user.is_staff == True:
+        return HttpResponseRedirect('/')
+
     if request.method == 'POST':
         form = EventForm(request.POST, request.FILES, instance=current_user)
         if form.is_valid():
@@ -60,6 +63,9 @@ def create_event_view(request):
 def update_event_view(request, slug):
     obj = get_object_or_404(Event, slug=slug)
     current_user = CustomUser.objects.get(id=request.user.id)
+
+    if current_user.is_staff == True:
+        return HttpResponseRedirect('/')
 
     # Check logged in user is 'user' of this event
     if obj.user != current_user:
