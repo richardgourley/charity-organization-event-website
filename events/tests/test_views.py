@@ -114,3 +114,7 @@ class EventViewTests(TestCase):
     def test_event_list_status_code_200(self):
         response = self.client.get('/events/')
         self.assertEqual(response.status_code, 200)
+
+    def test_event_list_reverse_url_status_code_200(self):
+        response = self.client.get(reverse('events:all_events'))
+        self.assertEqual(response.status_code, 200)
