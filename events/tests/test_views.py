@@ -127,3 +127,8 @@ class EventViewTests(TestCase):
         response = self.client.get(reverse('events:all_events'))
         self.assertTrue('Approved event' in str(response.content))
         self.assertTrue('88_test_charity_approved_event' in str(respone.content))
+
+    def test_event_list_unapproved_event_doesnt_appear_in_content(self):
+        response = self.client.get(reverse('events:all_events'))
+        self.assertFalse('Unapproved event' in str(response.content))
+        self.assertFalse('88_test_charity_unapproved_event' in str(response.content))
