@@ -132,3 +132,8 @@ class EventViewTests(TestCase):
         response = self.client.get(reverse('events:all_events'))
         self.assertFalse('Unapproved event' in str(response.content))
         self.assertFalse('88_test_charity_unapproved_event' in str(response.content))
+
+    def test_event_list_date_in_the_past_event_doesnt_appear_in_content(self):
+        response = self.client.get(reverse('events:all_events'))
+        self.assertFalse('Date in the past event' in str(response.content))
+        self.assertFalse('75_test_charity_date_in_the_past_event' in str(response.content))
