@@ -122,3 +122,8 @@ class EventViewTests(TestCase):
     def test_event_list_correct_template_used(self):
         response = self.client.get(reverse('events:all_events'))
         self.assertTemplateUsed(response, 'events/all_events.html')
+
+    def test_event_list_approved_event_appears_in_content(self):
+        response = self.client.get(reverse('events:all_events'))
+        self.assertTrue('Approved event' in str(response.content))
+        self.assertTrue('88_test_charity_approved_event' in str(respone.content))
