@@ -107,3 +107,10 @@ class EventViewTests(TestCase):
                 image='image4.jpg',
                 slug='unapproved_user_event',
             )
+
+    '''
+    EVENT LIST VIEW TESTS
+    '''
+    def test_event_list_status_code_200(self):
+        response = self.client.get('/events/')
+        self.assertEqual(response.status_code, 200)
