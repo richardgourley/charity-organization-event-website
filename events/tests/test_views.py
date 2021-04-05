@@ -157,3 +157,8 @@ class EventViewTests(TestCase):
     def test_detail_view_status_code_200_approved_event(self):
         response = self.client.get('/events/detail/88_test_charity_approved_event')
         self.assertEqual(response.status_code, 200)
+
+    def test_detail_view_status_code_200_approved_event_reverse_url(self):
+        event = Event.objects.get(event_name='Approved event')
+        response = client.get(reverse('events:event_detail', args=(event.slug,)))
+        self.assertEqual(response.status_code, 200)
