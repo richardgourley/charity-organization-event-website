@@ -149,3 +149,11 @@ class EventViewTests(TestCase):
     def test_event_list_date_in_the_past_event_doesnt_appear_in_context(self):
         event = Event.objects.get(event_name="Date in the past event")
         self.assertFalse(event in response.context['object_list'])
+
+    '''
+    EVENT DETAIL VIEW TESTS
+    '''
+
+    def test_detail_view_status_code_200_approved_event(self):
+        response = self.client.get('/events/detail/88_test_charity_approved_event')
+        self.assertEqual(response.status_code, 200)
