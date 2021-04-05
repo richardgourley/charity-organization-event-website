@@ -162,3 +162,7 @@ class EventViewTests(TestCase):
         event = Event.objects.get(event_name='Approved event')
         response = client.get(reverse('events:event_detail', args=(event.slug,)))
         self.assertEqual(response.status_code, 200)
+
+    def test_detail_view_correct_template_used(self):
+        response = self.client.get('/events/detail/88_test_charity_approved_event')
+        self.assertTemplateUsed(response, 'events/event_detail.html')
