@@ -141,3 +141,7 @@ class EventViewTests(TestCase):
     def test_event_list_approved_event_appears_in_context(self):
         event = Event.objects.get(event_name="Approved event")
         self.assertTrue(event in response.context['object_list'])
+
+    def test_event_list_unapproved_event_doesnt_appear_in_context(self):
+        event = Event.objects.get(event_name="Unapproved event")
+        self.assertFalse(event in response.context['object_list'])
