@@ -170,3 +170,8 @@ class EventViewTests(TestCase):
     def test_detail_view_unapproved_event_detail_view_returns_404(self):
         response = self.client.get('/events/detail/88_test_charity_unapproved_event')
         self.assertEqual(response.status_code, 404)
+
+    def test_detail_view_unapproved_user_event_detail_view_returns_404(self):
+        response = self.client.get('/events/detail/97_unapproved_user_event')
+        self.assertEqual(response.status_code, 404)
+        
