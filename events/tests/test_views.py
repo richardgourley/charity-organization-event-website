@@ -178,3 +178,7 @@ class EventViewTests(TestCase):
     def test_detail_view_date_in_past_event_detail_view_returns_404(self):
         response = self.client.get('/events/detail/75_test_charity_date_in_the_past_event')
         self.assertEqual(response.status_code, 404)
+
+    def test_detail_view_approved_event_content_charity_name_appears(self):
+        response = self.client.get('/events/detail/88_test_charity_approved_event')
+        self.assertTrue('Test Charity' in str(response.content))
