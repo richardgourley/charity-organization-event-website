@@ -182,3 +182,7 @@ class EventViewTests(TestCase):
     def test_detail_view_approved_event_content_charity_name_appears(self):
         response = self.client.get('/events/detail/88_test_charity_approved_event')
         self.assertTrue('Test Charity' in str(response.content))
+
+    def test_detail_view_approved_event_content_event_description_appears(self):
+        response = self.client.get('/events/detail/88_test_charity_approved_event')
+        self.assertTrue('A lovely event.' in str(response.content))
