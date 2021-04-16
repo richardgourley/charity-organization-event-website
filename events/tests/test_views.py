@@ -199,3 +199,10 @@ class EventViewTests(TestCase):
         event_date = event.event_date
         formatted_date = event_date.strftime("%b") + ". " + event_date.strftime("%d") + ", " + event_date.strftime("%Y") 
         self.assertTrue(formatted_date in str(response.content))
+
+    '''
+    CREATE EVENT VIEW TESTS
+    '''
+    def test_create_event_view_not_logged_in_redirects(self):
+        response = self.client.get('/events/create/')
+        self.assertTrue(response.status_code, 302)
