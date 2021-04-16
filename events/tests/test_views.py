@@ -190,3 +190,12 @@ class EventViewTests(TestCase):
     def test_detail_view_approved_event_content_event_url_appears(self):
         response = self.client.get('/events/detail/88_test_charity_approved_event')
         self.assertTrue('http://www.testevent.com/approved_event' in str(response.content))
+
+        # Check that the date appearing on the page is in expected format
+    def test_detail_view_approved_event_date_appears_correct_format(self):
+        # Expecting this format: Oct. 8, 2020
+        event = Event.objects.get(event_name='Approved event')
+        response = self.client.get('/events/detail/88_test_charity_approved_event/')
+        event_date = event.event_date
+        formatted_date = event_date.strftime("%b") + ". " + event_date.strftime("%d") + ", " + event_date.strftime("%Y") 
+        self.assertTrue(formatted_date in str(response.content))
