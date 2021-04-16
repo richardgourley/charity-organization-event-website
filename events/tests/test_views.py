@@ -206,3 +206,8 @@ class EventViewTests(TestCase):
     def test_create_event_view_not_logged_in_redirects(self):
         response = self.client.get('/events/create/')
         self.assertTrue(response.status_code, 302)
+
+    def test_create_event_view_logged_in_status_code_200(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get('/events/create/')
+        self.assertTrue(response.status_code, 302)
