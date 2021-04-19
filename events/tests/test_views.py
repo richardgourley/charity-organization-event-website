@@ -231,3 +231,8 @@ class EventViewTests(TestCase):
         login = self.client.login(username='test_user_2', password='test_user_2')
         response = self.client.get(reverse('events:create_event'))
         self.assertEqual(response.status_code, 302)
+
+    def test_create_event_view_logged_in_displays_event_name_field(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get('/events/create/')
+        self.assertTrue('input type="text" name="event_name"' in str(response.content))
