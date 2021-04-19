@@ -226,3 +226,8 @@ class EventViewTests(TestCase):
         login = self.client.login(username='staff_member', password='staff_member')
         response = self.client.get(reverse('events:create_event'))
         self.assertEqual(response.status_code, 302)
+
+    def test_create_event_view_unapproved_user_logged_in_redirects(self):
+        login = self.client.login(username='test_user_2', password='test_user_2')
+        response = self.client.get(reverse('events:create_event'))
+        self.assertEqual(response.status_code, 302)
