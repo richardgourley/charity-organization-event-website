@@ -236,3 +236,8 @@ class EventViewTests(TestCase):
         login = self.client.login(username='test_user_1', password='test_user_1')
         response = self.client.get('/events/create/')
         self.assertTrue('input type="text" name="event_name"' in str(response.content))
+
+    def test_create_event_view_logged_in_displays_event_description_field(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get('/events/create/')
+        self.assertTrue('textarea name="event_description"' in str(response.content))
