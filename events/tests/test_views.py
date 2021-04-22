@@ -262,3 +262,11 @@ class EventViewTests(TestCase):
         login = self.client.login(username='test_user_1', password='test_user_1')
         response = self.client.get('/events/create/')
         self.assertTrue('input type="url" name="event_url" value="http://"' in str(response.content))
+
+    '''
+    UPDATE EVENT VIEW TESTS
+    '''
+    def test_update_event_view_not_logged_in_redirects(self):
+        response = self.client.get('/events/update/88_test_charity_approved_event')
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/accounts/login/?next=/events/update/88_test_charity_approved_event')
