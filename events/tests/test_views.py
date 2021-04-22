@@ -196,7 +196,7 @@ class EventViewTests(TestCase):
         # Expecting this format: Oct. 8, 2020 or Nov. 22, 2021
         event = Event.objects.get(event_name='Approved event')
         response = self.client.get('/events/detail/88_test_charity_approved_event/')
-        
+
         event_date = event.event_date
         formatted_month = event_date.strftime("%b")
         formatted_day = event_date.strftime("%d")
@@ -254,3 +254,8 @@ class EventViewTests(TestCase):
         login = self.client.login(username='test_user_1', password='test_user_1')
         response = self.client.get('/events/create/')
         self.assertTrue('input type="text" name="event_date" value="MM/DD/YYYY"' in str(response.content))
+
+    def test_create_event_view_logged_in_displays_event_url_field(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get('/events/create/')
+        self.assertTrue('input type="url" name="event_url" value="http://"' in str(response.content))
