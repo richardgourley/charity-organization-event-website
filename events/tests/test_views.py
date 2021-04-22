@@ -149,6 +149,7 @@ class EventViewTests(TestCase):
         self.assertFalse(event in response.context['object_list'])
 
     def test_event_list_date_in_the_past_event_doesnt_appear_in_context(self):
+        response = self.client.get(reverse('events:all_events'))
         event = Event.objects.get(event_name="Date in the past event")
         self.assertFalse(event in response.context['object_list'])
 
