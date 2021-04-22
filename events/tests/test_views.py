@@ -191,13 +191,21 @@ class EventViewTests(TestCase):
         response = self.client.get('/events/detail/88_test_charity_approved_event')
         self.assertTrue('http://www.testevent.com/approved_event' in str(response.content))
 
-        # Check that the date appearing on the page is in expected format
+    # Check that the date appearing on the page is in expected format
     def test_detail_view_approved_event_date_appears_correct_format(self):
-        # Expecting this format: Oct. 8, 2020
+        # Expecting this format: Oct. 8, 2020 or Nov. 22, 2021
         event = Event.objects.get(event_name='Approved event')
         response = self.client.get('/events/detail/88_test_charity_approved_event/')
+        
         event_date = event.event_date
-        formatted_date = event_date.strftime("%b") + ". " + event_date.strftime("%d") + ", " + event_date.strftime("%Y") 
+        formatted_month = event_date.strftime("%b")
+        formatted_day = event_date.strftime("%d")
+        # Check for and remove '0' if event_date 'day' starts with a '0' eg. '08', '09'
+        if formatted_day[0] == '0':
+            formatted_day = formatted_day[1]
+        formatted_year = event_date.strftime("%Y")
+
+        formatted_date = f"{formatted_month}. {formatted_day}, {formatted_year}"
         self.assertTrue(formatted_date in str(response.content))
 
     '''
