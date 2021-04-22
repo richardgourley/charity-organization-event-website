@@ -139,6 +139,7 @@ class EventViewTests(TestCase):
         self.assertFalse('75_test_charity_date_in_the_past_event' in str(response.content))
 
     def test_event_list_approved_event_appears_in_context(self):
+        response = self.client.get(reverse('events:all_events'))
         event = Event.objects.get(event_name="Approved event")
         self.assertTrue(event in response.context['object_list'])
 
