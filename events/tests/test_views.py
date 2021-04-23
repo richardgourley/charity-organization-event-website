@@ -270,3 +270,8 @@ class EventViewTests(TestCase):
         response = self.client.get('/events/update/88_test_charity_approved_event')
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/accounts/login/?next=/events/update/88_test_charity_approved_event')
+
+    def test_update_event_view_logged_in_status_code_200(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get('/events/update/88_test_charity_approved_event')
+        self.assertEqual(response.status_code, 200)
