@@ -280,3 +280,10 @@ class EventViewTests(TestCase):
         login = self.client.login(username='test_user_1', password='test_user_1')
         response = self.client.get('/events/update/88_test_charity_approved_event')
         self.assertTemplateUsed(response, 'events/update_event.html')
+
+    # Test user 3 - approved but not 'OWNER' of the event in this test
+    def test_update_event_view_user_not_owner_of_this_event_redirects_to_profile_page(self):
+        login = self.client.login(username='test_user_3', password='test_user_3')
+        response = self.client.get('/events/update/88_test_charity_approved_event')
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/accounts/profile/')
