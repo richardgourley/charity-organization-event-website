@@ -275,3 +275,8 @@ class EventViewTests(TestCase):
         login = self.client.login(username='test_user_1', password='test_user_1')
         response = self.client.get('/events/update/88_test_charity_approved_event')
         self.assertEqual(response.status_code, 200)
+
+    def test_update_event_view_uses_correct_template(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get('/events/update/88_test_charity_approved_event')
+        self.assertTemplateUsed(response, 'events/update_event.html')
