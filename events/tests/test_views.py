@@ -293,3 +293,11 @@ class EventViewTests(TestCase):
         response = self.client.get('/events/update/88_test_charity_approved_event')
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/')
+
+    def test_update_event_view_event_details_appear_in_content(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get('/events/update/88_test_charity_approved_event')
+        self.assertTrue('value="Approved event"' in str(response.content))
+        self.assertTrue('A lovely event. Really super.' in str(response.content))
+        self.assertTrue('value="2021-10-08"' in str(response.content))
+        self.assertTrue('value="http://www.testevent.com/approved_event"' in str(response.content))
