@@ -287,3 +287,9 @@ class EventViewTests(TestCase):
         response = self.client.get('/events/update/88_test_charity_approved_event')
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/accounts/profile/')
+
+    def test_update_view_staff_member_logged_in_redirects(self):
+        login = self.client.login(username='staff_member', password='staff_member')
+        response = self.client.get('/events/update/88_test_charity_approved_event')
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/')
