@@ -301,3 +301,9 @@ class EventViewTests(TestCase):
         self.assertTrue('A lovely event. Really super.' in str(response.content))
         self.assertTrue('value="2021-10-08"' in str(response.content))
         self.assertTrue('value="http://www.testevent.com/approved_event"' in str(response.content))
+
+    def test_update_view_test_user_1_in_response_context(self):
+        login = self.client.login(username='test_user_1', password='test_user_1')
+        response = self.client.get('/events/update/88_test_charity_approved_event')
+        test_user_1 = CustomUser.objects.get(username='test_user_1')
+        self.assertTrue(response.context['user'] == test_user_1)
