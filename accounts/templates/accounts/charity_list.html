@@ -12,7 +12,7 @@
 	<div class="row mb-5">
 		<div class="col-md-5 pb-4">
 			<h3>{{ user.charity_name }}</h3>
-			<img src="{{ user.charity_image.url }}" class="card-img-top" alt="{{ user.charity_name }}">
+			<img src="{{ user.charity_image.url }}" class="img-fluid" alt="{{ user.charity_name }}">
 		</div>
 		<div class="col-md-6 pb-4">
 			<h5 class="font-weight-bold">CHARITY BIO:</h5>
@@ -31,15 +31,15 @@
 			    Upcoming Events
 			</div>
 			<ul class="list-group list-group-flush">
-					{% for event in user.event_set.all %}
-						{% if event.approved == True %}
-							<li class="list-group-item">
-								<a href="{% url 'events:event_detail' event.slug %}">
-						    		{{ event.event_name }}
-					    		</a>
-					    	</li>
-						{% endif %}
-					{% endfor %}
+				{% for event in user.event_set.all %}
+					{% if event.approved == True and event.date_in_future == True %}
+						<li class="list-group-item">
+							<a href="{% url 'events:event_detail' event.slug %}">
+						    	{{ event.event_name }}
+					    	</a>
+					    </li>
+					{% endif %}
+				{% endfor %}
 			</ul>
 			{% endif %}
 		</div>
