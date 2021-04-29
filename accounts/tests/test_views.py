@@ -132,8 +132,6 @@ class AccountProfileViewTests(TestCase):
         # Get test_user_1
         test_user_1 = CustomUser.objects.get(username="test_user_1")
 
-        # Create an approved event for the approved user - test_user_1
-        #### NOTE - Unapproved events and events with dates in past are tested in 'Events'
         Event.objects.create(
                 user=test_user_1,
                 event_name='Approved event',
@@ -154,7 +152,7 @@ class AccountProfileViewTests(TestCase):
         response = self.client.get(reverse('accounts:profile'))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/accounts/login/?next=/accounts/profile/')
-
+    
     # Expecting staff members to be redirected - profile pages are for charity owners
     def test_logged_in_staff_member_redirects(self):
         login self.client.login(username='staff_member', password='staff_member')
@@ -305,3 +303,7 @@ class CharityListViewTests(TestCase):
         test_user_1 = CustomUser.objects.get(username='test_user_1')
         charity_bio = test_user_1.charity_bio
         self.assertTrue(charity_bio in str(response.content))
+
+
+
+
