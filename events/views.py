@@ -17,7 +17,8 @@ import random
 # Event list view
 class EventListView(generic.ListView):
     model = Event
-    template_name = 'events/all_events.html'
+    template_n
+    ame = 'events/all_events.html'
 
     def get_queryset(self):
         return Event.objects.all().filter(approved=True).filter(event_date__gte=timezone.now())
@@ -28,7 +29,7 @@ class EventDetailView(generic.DetailView):
     template_name = 'events/event_detail.html'
 
     def get_queryset(self):
-        return Event.objects.all().filter(approved=True)
+        return Event.objects.all().filter(approved=True).filter(event_date__gte=timezone.now())
 
 # Create an event view
 @login_required
