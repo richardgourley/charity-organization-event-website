@@ -10,6 +10,8 @@ from accounts.models import CustomUser
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from django.utils import timezone
+
 import random
 
 # Event list view
