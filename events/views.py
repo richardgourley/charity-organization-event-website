@@ -20,7 +20,7 @@ class EventListView(generic.ListView):
     template_name = 'events/all_events.html'
 
     def get_queryset(self):
-        return Event.objects.all().filter(approved=True)
+        return Event.objects.all().filter(approved=True).filter(event_date__gte=timezone.now())
 
 # Event Detail View
 class EventDetailView(generic.DetailView):
