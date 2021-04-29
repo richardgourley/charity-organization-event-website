@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 
 from django.urls import reverse
+from django.utils import timezone
 
 # Create your models here.
 
@@ -20,3 +21,7 @@ class Event(models.Model):
 
     def get_absolute_url(self):
         return reverse('events:event_detail', kwargs={'slug':self.slug})
+
+    def date_in_future(self):
+        return self.event_date >= timezone.now().date()
+
