@@ -15,6 +15,9 @@ from django.urls import reverse
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 
+# Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
