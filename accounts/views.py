@@ -77,7 +77,7 @@ def charity_list_view(request):
     user_list = CustomUser.objects.all().filter(approved=True).filter(is_staff=False)
     
     page = request.GET.get('page',1)
-    paginator = Paginator(user_list, 3)
+    paginator = Paginator(user_list, 10)
 
     try:
         users = paginator.page(page)
