@@ -9,28 +9,39 @@
 	    <h2 class="font-weight-bold">All events</h2>
     </div>
 
-    <div class="row">
-	{% for event in object_list %}
-		<div class="col-md-4 mb-4">
-			<div class="card h-100">
-				<img src="{{ event.image.url }}" class="img-fluid card-img-top" style="max-height:200px;" />
-				<div class="card-body">
-					<a href="{{ event.get_absolute_url }}">
-						<h4>{{ event.event_name }}</h4>
-					</a>
-		    		<p>DATE: {{ event.event_date }}</p>
-		    		<p>CHARITY: {{ event.user.charity_name }}</p>
-		    		<p>{{ event.event_description|linebreaks }}</p>
+    {% if events %}
+
+	    <div class="row">
+		{% for event in object_list %}
+			<div class="col-md-4 mb-4">
+				<div class="card h-100">
+					<img src="{{ event.image.url }}" class="img-fluid card-img-top" style="max-height:200px;" />
+					<div class="card-body">
+						<a href="{{ event.get_absolute_url }}">
+							<h4>{{ event.event_name }}</h4>
+						</a>
+			    		<p>DATE: {{ event.event_date }}</p>
+			    		<p>CHARITY: {{ event.user.charity_name }}</p>
+			    		<p>{{ event.event_description|linebreaks }}</p>
+					</div>
+					<div class="card-footer">
+						<a href="{{ event.get_absolute_url }}">
+							<button class="btn btn-primary">Learn more</button>
+						</a>
+					</div>
 				</div>
-				<div class="card-footer">
-					<a href="{{ event.get_absolute_url }}">
-						<button class="btn btn-primary">Learn more</button>
-					</a>
-				</div>
-			</div>
-	  	</div>
-	{% endfor %}
-    </div>
+		  	</div>
+		{% endfor %}
+	    </div>
+
+	{% else %}
+		<div class="row">
+			<div class="col-12">
+				<p>Sorry, we don't have any upcoming events at the moment.</p>
+				<p class="lead">Please check back soon!</p>
+		    </div>
+		</div>
+	{% endif %}
 
 </div>
 
