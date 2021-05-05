@@ -1,20 +1,73 @@
 # Charity Organization Sass
 
-A SASS for charities written in Django and Wagtail.  
+A SASS for charities written in Django and Wagtail with full Django login, signup and password reset.
+
 A charitable organization can create an account, add information about their charity and create charity events. 
+
 The user can learn about charities and browse events based on the type of charity or can view charity events being held by a specific organization.
+
+Charities and events are subject to approval before appearing on the website.
 
 MODELS
 There are 2 models in this app:
-- Accounts - custom users created from the AbstractUser class
+- Accounts - (CustomUser can create a charity in their profile)
 - Events
 
-SKILLS COVERED
-As well as typical Django models, templates and views, the app focusses heavily on using the AbstractUser class to extend the standard user model.
+# SKILLS COVERED
+As well as standard Django models, views and templates I've listed tools and modules used within the application to save Django students time in seeing if this repo has some modules they would like to learn more about:
 
-Hopefully this gives a good example to a new Django developer of the power of extending the base user class for many different types of user engagement apps.
+## GENERAL
+python-decouple and a '.env' file - 
+  - used to avoid displaying database and secret key information if deploying to Github
+AUTH_USER_MODEL = 'accounts.CustomUser' - setting up an AUTH_USER_MODEL
 
-The app also makes use of Django's excellent built-in password reset system if a user forgets a password - (see templates/registration)
+## ACCOUNTS
+- Custom User class inheriting the built in 'AbstractUser' class
+  - Extending the standard Django users is key to this application.  It allows the
+    developer to create any type of user application by adding fields to the existing Django
+    user fields.
+- django_countries - adding a select field of all countries to a form
+- choices within a charfield
+- ImageField
+
+- django auth forms - UserCreationForm, UserChangeForm
+- widgets - attrs - allows CSS styling of forms
+- ModelForm
+
+- SimpleUploadedFile from django.core.files.uploadedfile
+- reverse
+- reverse_lazy
+- generic views
+- HttpResponseRedirect
+- Paginator, EmptyPage, PageNotAnInteger
+- Pagination for function based views
+
+- auth.decorators - login_required
+
+## EVENTS
+SlugField
+reverse 
+ForeignKey - including settings.AUTH_USER_MODEL to assign CustomUser to an Event object.
+timezone  - used in bespoke model method - 'date_in_future'
+
+ModelForm
+widgets - attrs - add css styling to a form
+slug - used as part of a URL
+generic - ListView, DetailView
+Paginator - generic class based views
+
+## HOME
+template tags - adding Python to a part of a web page, in this case footer
+register = template.Library()
+@register.inclusion_tag("tags/footer.html")
+
+## REGISTRATION
+Using Django's built in registration templates:
+- login.html
+- password_reset_completed.html
+- password_reset_confirm.html
+- password_reset_done.html
+- password_reset_form.html
 
 
 
