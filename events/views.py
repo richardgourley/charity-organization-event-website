@@ -17,11 +17,10 @@ import random
 # Event list view
 class EventListView(generic.ListView):
     model = Event
-    template_n
-    ame = 'events/all_events.html'
+    template_name = 'events/all_events.html'
 
     def get_queryset(self):
-        return Event.objects.all().filter(approved=True).filter(event_date__gte=timezone.now())
+        return Event.objects.all().filter(approved=True).filter(event_date__gte=timezone.now()).order_by('event_date')
 
 # Event Detail View
 class EventDetailView(generic.DetailView):
