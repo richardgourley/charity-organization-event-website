@@ -44,6 +44,8 @@ AUTH_USER_MODEL = 'accounts.CustomUser' - setting up an AUTH_USER_MODEL
 
 - auth.decorators - login_required
 
+- pagination in templates - obj.has_previous and obj.has_next used in charity list template
+
 ## EVENTS
 SlugField
 reverse 
