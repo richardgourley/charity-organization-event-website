@@ -19,7 +19,7 @@ class EventListView(generic.ListView):
     model = Event
     template_name = 'events/all_events.html'
     context_object_name = 'events'
-    paginate_by = 2
+    paginate_by = 10
 
     def get_queryset(self):
         return Event.objects.all().filter(approved=True).filter(event_date__gte=timezone.now()).order_by('event_date')
