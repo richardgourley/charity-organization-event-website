@@ -304,6 +304,12 @@ class CharityListViewTests(TestCase):
         charity_bio = test_user_1.charity_bio
         self.assertTrue(charity_bio in str(response.content))
 
+    # Pagination - test 'users' = '<Page 1 of 1>'
+    def test_users_is_Page_1_of_1(self):
+        response = self.client.get(reverse('all_charities'))
+        self.assertTrue(str(response.context['users']) == '<Page 1 of 1>')
+
+
 
 
 
