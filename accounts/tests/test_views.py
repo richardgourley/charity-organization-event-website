@@ -308,6 +308,11 @@ class CharityListViewTests(TestCase):
     def test_users_is_Page_1_of_1(self):
         response = self.client.get(reverse('all_charities'))
         self.assertTrue(str(response.context['users']) == '<Page 1 of 1>')
+   
+    # Test 'all_charities/?=page1' works for paginated charity_list view
+    def test_page_1_status_code_is_200(self):
+        response = self.client.get('/all_charities/?page=1')
+        self.assertTrue(response.status_code == 200)
 
 
 
