@@ -71,5 +71,15 @@ Using Django's built in registration templates:
 - password_reset_done.html
 - password_reset_form.html
 
+## TESTING
+- TestCase
+- 200 and 302 status code testing
+- login - testing logged in users
+- Model and View Testing
+- Timezone and datetime.timedelta() - used to create dates in the future and the past for testing model instances
+- self.client - used to retrieve the html content and context variables to test site pages
+- meta - used to test individual model fields
+- assertion methods - asserTrue, assertFalse, assertEqual, assertTemplateUsed
+- response.content() and response.context()
 
 
