@@ -74,7 +74,7 @@ def account_profile_page(request):
 
 # A charity list view - represented as url - 'all_charities' - see main urls.py
 def charity_list_view(request):
-    user_list = CustomUser.objects.all().filter(approved=True).filter(is_staff=False)
+    user_list = CustomUser.objects.all().filter(approved=True).filter(is_staff=False).order_by('charity_name')
     
     page = request.GET.get('page',1)
     paginator = Paginator(user_list, 10)
