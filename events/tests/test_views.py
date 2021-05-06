@@ -182,7 +182,15 @@ class EventViewTests(TestCase):
     # Test length of context object name 'events' in response.context is 1
     def test_context_object_name_length_is_1(self):
         response = self.client.get(reverse('events:all_events'))
+        # Should only be approved event with future date
         self.assertTrue(len(response.context['events']) == 1)
+
+    ## Pagination tests
+    # Test 'page_obj' exists and as a string is '<Page 1 of 1>'
+    def test_event_list_page_obj(self):
+        response = self.client.get(reverse('events:all_events'))
+        self.assertTrue('page_obj' in response.context)
+        self.assertTrue(str(response.context['page_obj']) == '<Page 1 of 1>')
 
     '''
     EVENT DETAIL VIEW TESTS
