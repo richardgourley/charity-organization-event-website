@@ -3,25 +3,27 @@ from datetime import datetime
 from django.utils import timezone
 from .models import Event
 from accounts.models import CustomUser
+from django.urls import reverse
 
 class EventViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Create CustomUser
         CustomUser.objects.create(
-                username="test_user_1",
-                email="email@testcharity.com",
-                password='test_user_1',
-                charity_name="Test Charity",
-                charity_address_line_1="Main Road",
-                charity_address_line_2="London",
-                charity_postcode="LON234",
-                charity_website_url="http://www.testcharity.com",
-                charity_bio="A test charity number 1",
-                charity_country='AU',
-                charity_operating_continent="oc",
-                charity_image="test_user_image.jpg"
-            )
+            username="test_user_1",
+            email="email@testcharity.com",
+            password='test_user_1',
+            charity_name="Test Charity",
+            charity_address_line_1="Main Road",
+            charity_address_line_2="London",
+            charity_postcode="LON234",
+            charity_website_url="http://www.testcharity.com",
+            charity_bio="A test charity number 1",
+            charity_country='AU',
+            charity_operating_continent="oc",
+            charity_image="test_user_image.jpg", 
+            approved=True
+        )
 
         # Create Unapproved Custom User
         # Approved = FALSE by default
@@ -37,7 +39,26 @@ class EventViewTests(TestCase):
             charity_bio="A test charity number 2",
             charity_country='AU',
             charity_operating_continent="oc",
-            charity_image="test_user_image.jpg"
+            charity_image="test_user_image2.jpg"
+        )
+
+        '''
+        Another approved user - used to test update event view
+        '''
+        CustomUser.objects.create(
+            username="test_user_3",
+            email="email@testcharity.com",
+            password='test_user_3',
+            charity_name="Test Charity 3",
+            charity_address_line_1="Main Road",
+            charity_address_line_2="Berlin",
+            charity_postcode="BER234",
+            charity_website_url="http://www.testcharity3.com",
+            charity_bio="A test charity number 3",
+            charity_country='GE',
+            charity_operating_continent="oc",
+            charity_image="test_user_image3.jpg", 
+            approved=True
         )
 
         #Create Staff Member - is_staff = True, approved = False (default)
@@ -105,7 +126,7 @@ class EventViewTests(TestCase):
                 event_url='http://www.testevent.com/unapproved_user_event',
                 approved=True,
                 image='image4.jpg',
-                slug='unapproved_user_event',
+                slug='97_unapproved_user_event',
             )
 
     '''
@@ -126,7 +147,7 @@ class EventViewTests(TestCase):
     def test_event_list_approved_event_appears_in_content(self):
         response = self.client.get(reverse('events:all_events'))
         self.assertTrue('Approved event' in str(response.content))
-        self.assertTrue('88_test_charity_approved_event' in str(respone.content))
+        self.assertTrue('88_test_charity_approved_event' in str(response.content))
 
     def test_event_list_unapproved_event_doesnt_appear_in_content(self):
         response = self.client.get(reverse('events:all_events'))
@@ -152,6 +173,16 @@ class EventViewTests(TestCase):
         response = self.client.get(reverse('events:all_events'))
         event = Event.objects.get(event_name="Date in the past event")
         self.assertFalse(event in response.context['object_list'])
+
+    # Test context object name 'events' appears in response.context
+    def test_context_object_name_in_context(self):
+        response = self.client.get(reverse('events:all_events'))
+        self.assertTrue('events' in response.context)
+
+    # Test length of context object name 'events' in response.context is 1
+    def test_context_object_name_length_is_1(self):
+        response = self.client.get(reverse('events:all_events'))
+        self.assertTrue(len(response.context['events']) == 1)
 
     '''
     EVENT DETAIL VIEW TESTS
@@ -199,7 +230,6 @@ class EventViewTests(TestCase):
         # Expecting this format: Oct. 8, 2020 or Nov. 22, 2021
         event = Event.objects.get(event_name='Approved event')
         response = self.client.get('/events/detail/88_test_charity_approved_event/')
-
         event_date = event.event_date
         formatted_month = event_date.strftime("%b")
         formatted_day = event_date.strftime("%d")
@@ -307,3 +337,4 @@ class EventViewTests(TestCase):
         response = self.client.get('/events/update/88_test_charity_approved_event')
         test_user_1 = CustomUser.objects.get(username='test_user_1')
         self.assertTrue(response.context['user'] == test_user_1)
+
