@@ -1,6 +1,6 @@
-# Charity Organization Saas
+# Charity Organization Event Website
 
-A SASS for charities written in Django and Wagtail with full Django login, signup and password reset.
+A login event management system for charities written in Django and Wagtail with full Django login, signup and password reset functionality.
 
 A charitable organization can create an account, add information about their charity and create charity events. 
 
@@ -10,11 +10,13 @@ Charities and events are subject to approval before appearing on the website.
 
 MODELS
 There are 2 models in this app:
-- Accounts - (CustomUser can create a charity in their profile)
+- Accounts 
+    - CustomUser can add charity information to their account.
+    - CustomUser inherits from AbstractUser.
 - Events
 
 # SKILLS COVERED
-As well as standard Django models, views and templates I've listed tools and modules used within the application to save Django students time in seeing if this repo has some modules they would like to learn more about:
+As well as standard Django models, views and templates I've listed all tools and modules used within the application to help Django students see if this repo has some modules they would like to learn more about:
 
 ## GENERAL
 python-decouple and a '.env' file - 
@@ -74,7 +76,7 @@ Using Django's built in registration templates:
 ## TESTING
 - TestCase
 - 200 and 302 status code testing
-- login - testing logged in users
+- login - testing logged in users actions
 - Model and View Testing
 - Timezone and datetime.timedelta() - used to create dates in the future and the past for testing model instances
 - self.client - used to retrieve the html content and context variables to test site pages
