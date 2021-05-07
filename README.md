@@ -1,4 +1,4 @@
-# Charity Organization Sass
+# Charity Organization Saas
 
 A SASS for charities written in Django and Wagtail with full Django login, signup and password reset.
 
