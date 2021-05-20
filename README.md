@@ -8,6 +8,7 @@ SCREENSHOTS
 ![homepage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/homepage.png)
 
 ## 2. SIGNUP PAGE 
+- Extends the standard Django user model using AbstractUser
 
 ![signuppage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/signuppage.png)
 
