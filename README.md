@@ -16,6 +16,6 @@ SCREENSHOTS
 
 ![profilepage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/profilepage.png)
 
-## 3. EVENTS PAGE 
+## 4. EVENTS PAGE 
 
 ![eventspage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/events.png)
