@@ -54,15 +54,17 @@ pip install mysqlclient
 ```
 
 Install django-countries
+
 `pip install django-countries`
 
 See files in '/settings' dir to see how to set up python-decouple 'config', django-countries, abstract user and bespoke database.
 
-Setup custom user code from the app 'accounts' before the first migration:
 ```
 python manage.py startapp accounts
 python manage.py startapp events
 ```
+
+NOTE: Setup custom user code from the app 'accounts' **before** the first migration:
 
 See https://learndjango.com/tutorials/django-custom-user-model for more on custom user models.
 
