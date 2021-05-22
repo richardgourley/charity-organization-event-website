@@ -2,6 +2,25 @@
 
 A fully tested login event management system for charities written in Django and Wagtail with full Django login, signup and password reset functionality.
 
+## Screenshots
+
+## 1.Homepage
+
+![homepage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/homepage.png)
+
+## 2. SignUp Page
+- Extends the standard Django user model using AbstractUser
+
+![signuppage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/signuppage.png)
+
+## 3. Profile Page 
+
+![profilepage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/profilepage.png)
+
+## 4. Events Page
+
+![eventspage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/events.png)
+
 ## Getting Started
 
 New to Django and/ or Wagtail? To setup Django and Wagtail with Bootstrap and a bespoke database see my other repo for a step by step guide: https://github.com/richardgourley/django-wagtail-stepbystep
@@ -44,22 +63,3 @@ Usual python setup
 `python manage.py migrate`
 `python manage.py createsuperuser`
 `python manage.py runserver`
-
-
-## Screenshots
-- 1. HOMEPAGE
-
-![homepage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/homepage.png)
-
-- 2. SIGNUP PAGE 
-- Extends the standard Django user model using AbstractUser
-
-![signuppage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/signuppage.png)
-
-- 3. PROFILE PAGE 
-
-![profilepage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/profilepage.png)
-
-- 4. EVENTS PAGE 
-
-![eventspage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/events.png)
