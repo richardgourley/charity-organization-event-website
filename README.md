@@ -1,8 +1,8 @@
 # Charity Organization Event Website
 
 A web app written using Django and Wagtail.
-- Implements a CustomUser model extending the base Django user model (using AbstractUser)
 - Charity owners can register 
+  - Implements a CustomUser model extending the base Django user model (using AbstractUser)
 - Charity owners can add a profile highlighting what their charity does, location, where it operates
 - Charity owners can create charity events
 - Site visitors can view all charities and events
