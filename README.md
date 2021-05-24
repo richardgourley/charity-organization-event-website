@@ -1,23 +1,34 @@
 # Charity Organization Event Website
 
-A fully tested login event management system for charities written in Django and Wagtail with full Django login, signup and password reset functionality.
+A web app written using Django and Wagtail.
+- Implements a CustomUser model extending the base Django user model (using AbstractUser)
+- Charity owners can register 
+- Charity owners can add a profile highlighting what their charity does, location, where it operates
+- Charity owners can create charity events
+- Site visitors can view all charities and events
+
+### TO DO
+- [ ] Add custom user settings to the wagtail admin dashboard
+- [ ] Add a news blog app
+- [ ] Add the search view to the menu
+- [ ] Add a link to the main blog page to the menu
 
 ## Screenshots
 
-## 1.Homepage
+### 1. Homepage
 
 ![homepage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/homepage.png)
 
-## 2. SignUp Page
+### 2. SignUp Page
 - Extends the standard Django user model using AbstractUser
 
 ![signuppage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/signuppage.png)
 
-## 3. Profile Page 
+### 3. Profile Page 
 
 ![profilepage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/profilepage.png)
 
-## 4. Events Page
+### 4. Events Page
 
 ![eventspage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/events.png)
 
