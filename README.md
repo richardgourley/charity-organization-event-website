@@ -6,8 +6,9 @@ A web app written using Django and Wagtail.
 - Charity owners can add a profile highlighting what their charity does, location, where it operates
 - Charity owners can create charity events
 - Site visitors can view all charities and events
+- The site administrator has to approve all charity signups and event signups before they go live on the website
 
-### TO DO
+### A FEW THINGS STILL TO DO
 - [ ] Add custom user settings to the wagtail admin dashboard
 - [ ] Add a news blog app
 - [ ] Add the search view to the menu
