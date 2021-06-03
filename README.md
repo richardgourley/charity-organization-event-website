@@ -1,14 +1,20 @@
 # Charity Organization Event Website
 
-A web app written using Django and Wagtail.
-- Charity owners can register 
-  - Implements a CustomUser model extending the base Django user model (using AbstractUser)
-- Charity owners can add a profile highlighting what their charity does, location, where it operates
-- Charity owners can create charity events
-- Site visitors can view all charities and events
-- The site administrator has to approve all charity signups and event signups before they go live on the website
+## Intro
+A membership website for charities written in Django and the Wagtail CMS.
 
-### A FEW THINGS STILL TO DO
+## Features
+- Charity owners can register and add an in depth profile highlighting what their charity does, their location and where they operate.
+- Charity owners can then create charity events.
+- Site visitors can view all charities and events on paginated views.
+- Charity owners can add a profile highlighting what their charity does, location, where it operates.
+- The site administrator has to approve all charity signups and event signups before they go live on the website.
+
+## Tools 
+- Implements a CustomUser model extending the base Django user model (using AbstractUser)
+SEE THE RELATED SECTION FOR LINKS TO LEARN MORE ABOUT WHEN TO USE CUSTOM USERS
+
+### To Do
 - [ ] Add custom user settings to the wagtail admin dashboard
 - [ ] Add a news blog app
 - [ ] Add the search view to the menu
@@ -87,3 +93,10 @@ python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
 ```
+
+## Related
+There is some debate over whether to use a Custom User model or to create a one-to-one field for a model called 'Profile' linked to a user.  Here are some links that discuss the topic further: 
+
+https://simpleisbetterthancomplex.com/tutorial/2016/11/23/how-to-add-user-profile-to-django-admin.html
+
+https://github.com/guettli/django-tips
