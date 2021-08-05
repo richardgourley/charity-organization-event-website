@@ -3,14 +3,15 @@
 ## Intro
 A membership website for charities written in Django and the Wagtail CMS.
 
-## Features
+## FEATURES
 - Charity owners can register and add an in depth profile highlighting what their charity does, their location and where they operate.
 - Charity owners can then create charity events.
 - Site visitors can view all charities and events on paginated views.
 - Charity owners can add a profile highlighting what their charity does, location, where it operates.
 - The site administrator has to approve all charity signups and event signups before they go live on the website.
 
-## Tools 
+## TOOLS 
+- 
 - Implements a CustomUser model extending the base Django user model (using AbstractUser)
 SEE THE RELATED SECTION FOR LINKS TO LEARN MORE ABOUT WHEN TO USE CUSTOM USERS
 
