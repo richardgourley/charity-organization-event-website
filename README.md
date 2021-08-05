@@ -1,19 +1,32 @@
 # Charity Organization Event Website
 
-## Intro
-A membership website for charities written in Django and the Wagtail CMS.
+## INTRO
+A membership website for charities written in Django and Wagtail CMS.
+
+Charity owners can create an account and add a profile for their charity. 
+
+The site admin has to approve all charity organization profiles.
+
+Once approved, the charity owner can login and create 'event' objects to tell the world about upcoming fundraising events.
 
 ## FEATURES
-- Charity owners can register and add an in depth profile highlighting what their charity does, their location and where they operate.
-- Charity owners can then create charity events.
-- Site visitors can view all charities and events on paginated views.
-- Charity owners can add a profile highlighting what their charity does, location, where it operates.
-- The site administrator has to approve all charity signups and event signups before they go live on the website.
+- Approved charities listed in paginated pages.
+- Approved events listed in paginated pages.
+- Users can create a charity profile
+- Users can create events
+- Admin has to approve all users and events before they appear on the website.
 
 ## TOOLS 
-- 
-- Implements a CustomUser model extending the base Django user model (using AbstractUser)
-SEE THE RELATED SECTION FOR LINKS TO LEARN MORE ABOUT WHEN TO USE CUSTOM USERS
+- Django
+- Wagtail
+- Bootstrap
+- python-decouple
+- django-countries
+- Pillow
+- CustomUser model - extends AbstractUser
+- UserCreationForm
+- UserChangeForm
+- Django registration, login and password reset system
 
 ### To Do
 - [ ] Add custom user settings to the wagtail admin dashboard
@@ -21,7 +34,7 @@ SEE THE RELATED SECTION FOR LINKS TO LEARN MORE ABOUT WHEN TO USE CUSTOM USERS
 - [ ] Add the search view to the menu
 - [ ] Add a link to the main blog page to the menu
 
-## Screenshots
+## SCREENSHOTS
 
 ### 1. Homepage
 
@@ -40,7 +53,7 @@ SEE THE RELATED SECTION FOR LINKS TO LEARN MORE ABOUT WHEN TO USE CUSTOM USERS
 
 ![eventspage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/events.png)
 
-## Getting Started
+## GETTING STARTED
 
 New to Django and/ or Wagtail? To setup Django and Wagtail with Bootstrap and a bespoke database see my other repo for a step by step guide: https://github.com/richardgourley/django-wagtail-stepbystep
 
@@ -87,7 +100,7 @@ NOTE: Setup custom user code from the app 'accounts' **before** the first migrat
 
 See https://learndjango.com/tutorials/django-custom-user-model for more on custom user models.
 
-Usual python setup
+Usual python web application creation
 ```
 python manage.py makemigrations accounts
 python manage.py migrate
@@ -95,7 +108,7 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-## Related
+## RELATED
 There is some debate over whether to use a Custom User model or to create a one-to-one field for a model called 'Profile' linked to a user.  Here are some links that discuss the topic further: 
 
 https://simpleisbetterthancomplex.com/tutorial/2016/11/23/how-to-add-user-profile-to-django-admin.html
