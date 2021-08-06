@@ -7,7 +7,9 @@ from wagtail.search.models import Query
 
 def search(request):
     search_query = request.GET.get('query', None)
+    print(search_query)
     page = request.GET.get('page', 1)
+    print(page)
 
     # Search
     if search_query:
