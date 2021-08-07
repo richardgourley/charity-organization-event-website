@@ -4,33 +4,32 @@ from django.template.response import TemplateResponse
 from wagtail.core.models import Page
 from wagtail.search.models import Query
 
+from events.models import Event
+from accounts.models import CustomUser
 
-def search(request):
+from django.utils import timezone
+
+
+def search_events(request):
     search_query = request.GET.get('query', None)
-    print(search_query)
+
+    # Gets current paginated page
     page = request.GET.get('page', 1)
-    print(page)
 
-    # Search
     if search_query:
-        search_results = Page.objects.live().search(search_query)
-        query = Query.get(search_query)
-
-        # Record hit
-        query.add_hit()
+        events = Event.objects.all().filter(approved=True).filter(event_date__gte=timezone.now()).filter(event_name__icontains=search_query)
     else:
-        search_results = Page.objects.none()
+        events = []
 
-    # Pagination
-    paginator = Paginator(search_results, 10)
+    paginator = Paginator(events, 5)
     try:
-        search_results = paginator.page(page)
+        events = paginator.page(page)
     except PageNotAnInteger:
-        search_results = paginator.page(1)
+        events = paginator.page(1)
     except EmptyPage:
-        search_results = paginator.page(paginator.num_pages)
+        events = paginator.page(paginator.num_pages)
 
-    return TemplateResponse(request, 'search/search.html', {
-        'search_query': search_query,
-        'search_results': search_results,
+    return TemplateResponse(request, 'search/search_events.html', {
+        'search_query':search_query,
+        'events':events,
     })
