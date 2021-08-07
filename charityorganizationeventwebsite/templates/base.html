@@ -25,10 +25,14 @@
         <!-- CSS only -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
+        <!---- Google Fonts ---->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Muli:200,300,400,700)" rel="stylesheet">
+
 
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/charityorganizationeventwebsite.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/charityorganizationsass.css' %}">
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -41,7 +45,7 @@
                <!---Navigation --->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand font-weight-bold" href="{% slugurl 'home' %}">Charity Organization Sass</a>
+                <a class="navbar-brand font-weight-bold" href="{% slugurl 'home' %}">Charity Organization Events</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -61,7 +65,7 @@
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'search' %}">Search</a>
+                            <a class="nav-link" href="{% url 'search_events' %}">Search Events</a>
                         </li>
                         {% if user.is_authenticated %}
                             <li class="nav-item active">
@@ -93,6 +97,7 @@
         {% get_footer %}
 
         {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/charityorganizationsass.js' %}"></script>
 
         {# Bootstrap4 JS #}
         <!-- JavaScript Bundle with Popper -->
