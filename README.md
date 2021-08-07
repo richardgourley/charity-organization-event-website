@@ -36,20 +36,19 @@ Once approved, the charity owner can login and create 'event' objects to tell th
 
 ## SCREENSHOTS
 
-### 1. Homepage
+### Homepage
 
 ![homepage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/homepage.png)
 
-### 2. SignUp Page
-- Extends the standard Django user model using AbstractUser
+### SignUp Page
 
 ![signuppage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/signuppage.png)
 
-### 3. Profile Page 
+### Profile Page
 
 ![profilepage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/profilepage.png)
 
-### 4. Events Page
+### Events Page
 
 ![eventspage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/events.png)
 
