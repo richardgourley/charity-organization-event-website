@@ -31,7 +31,7 @@ Once approved, the charity owner can login and create 'event' objects to tell th
 ### To Do
 - [ ] Add custom user settings to the wagtail admin dashboard
 - [ ] Add a news blog app
-- [ ] Add the search view to the menu
+- [y] Add a search events page - add to the menu
 - [ ] Add a link to the main blog page to the menu
 
 ## SCREENSHOTS
