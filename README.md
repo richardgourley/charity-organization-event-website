@@ -44,13 +44,13 @@ Once approved, the charity owner can login and create 'event' objects to tell th
 
 ![signuppage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/signuppage.png)
 
-### Profile Page
-
-![profilepage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/profilepage.png)
-
 ### Events Page
 
 ![eventspage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/events.png)
+
+### Charities Page
+
+![charitiespage](https://github.com/richardgourley/charity-organization-event-website/blob/main/sreenshots/charities.png)
 
 ## GETTING STARTED
 
