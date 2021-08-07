@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block body_class %}{% endblock %}
+
+{% block title %}Search Events{% endblock %}
+
+{% block content %}
+    <h1>Search Events</h1>
+
+    <form action="{% url 'search_events' %}" method="get">
+        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+        <input type="submit" value="Search" class="button">
+    </form>
+
+    {% if events %}
+        {% for event in events %}
+            <p>{{ event }}</p>
+        {% endfor %}
+
+        {% if events.has_previous %}
+            <a href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ events.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% if events.has_next %}
+            <a href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ events.next_page_number }}">Next</a>
+        {% endif %}
+
+    {% elif search_query %}
+
+        <p>No results found.</p>
+
+    {% endif %}
+
+{% endblock %}
