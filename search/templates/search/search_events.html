@@ -14,43 +14,37 @@
     </form>
 
     {% if events %}
-
         {% for event in events %}
             <p>{{ event }}</p>
         {% endfor %}
 
-        {% if events.paginator.num_pages > 1 %}
-
+        {% if events.has_previous %}
             <ul class="pagination">
+                <a href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ events.previous_page_number }}">Previous</a>
+        {% endif %}
 
-                {% if events.has_previous %}
-                    <a href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ events.previous_page_number }}">Previous</a>
-                {% endif %}
+        {% for i in events.paginator.page_range %}
 
-                {% for i in events.paginator.page_range %}
+            <p>{{ i }}</p>
 
-                    {% if i == page_obj.number %}
-                        <li class="page-item">
-                            <a class="page-link" href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ i }}">
-                                {{ i }}
-                            </a>
-                        </li>
-                    {% else %}
-                        <li class="page-item">
-                            <a class="page-link" href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ i }}">
-                                {{ i }}
-                            </a>
-                        </li>
-                    {% endif %}
+            {% if i == page_obj.number %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ i }}">
+                        {{ i }}
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ i }}">
+                        {{ i }}
+                    </a>
+                </li>
+            {% endif %}
 
-                {% endfor %}
+        {% endfor %}
 
-                {% if events.has_next %}
-                    <a href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ events.next_page_number }}">Next</a>
-                {% endif %}
-
-            </ul>
-
+        {% if events.has_next %}
+            <a href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ events.next_page_number }}">Next</a>
         {% endif %}
 
     {% elif search_query %}
