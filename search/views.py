@@ -21,7 +21,7 @@ def search_events(request):
     else:
         events = []
 
-    paginator = Paginator(events, 5)
+    paginator = Paginator(events, 1)
     try:
         events = paginator.page(page)
     except PageNotAnInteger:
@@ -29,7 +29,14 @@ def search_events(request):
     except EmptyPage:
         events = paginator.page(paginator.num_pages)
 
+    display_pagination = False
+
+    if events.paginator.num_pages > 1:
+        display_pagination = True
+
     return TemplateResponse(request, 'search/search_events.html', {
         'search_query':search_query,
         'events':events,
+        'display_pagination': display_pagination,
+        'page':page
     })
