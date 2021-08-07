@@ -6,51 +6,80 @@
 {% block title %}Search Events{% endblock %}
 
 {% block content %}
-    <h1>Search Events</h1>
+    <div class="container py-5">
 
-    <form action="{% url 'search_events' %}" method="get">
-        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-        <input type="submit" value="Search" class="button">
-    </form>
+        <div class="text-center pb-4">
+            <h2 class="font-weight-bold">Search Events</h2>
+        </div>
 
-    {% if events %}
-        {% for event in events %}
-            <p>{{ event }}</p>
-        {% endfor %}
+        <div class="text-center">
+            <form action="{% url 'search_events' %}" method="get">
+                <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+                <input type="submit" value="Search" class="button">
+            </form>
+        </div>
 
-        {% if events.has_previous %}
-            <ul class="pagination">
-                <a href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ events.previous_page_number }}">Previous</a>
-        {% endif %}
+        <div class="pt-5 px-4">
+        {% if events %}
 
-        {% for i in events.paginator.page_range %}
+            {% for event in events %}
+                <div class="mb-3">
+                    <h3 class="font-weight-bold pb-4"><a href="{{ event.get_absolute_url }}">{{ event.event_name}}</a></h3>
+                    <p>
+                        {{ event.event_description }}
+                    </p>
+                    <hr>
+                </div>
+            {% endfor %}
 
-            <p>{{ i }}</p>
+            {% if display_pagination %}
 
-            {% if i == page_obj.number %}
-                <li class="page-item">
-                    <a class="page-link" href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ i }}">
-                        {{ i }}
-                    </a>
-                </li>
-            {% else %}
-                <li class="page-item">
-                    <a class="page-link" href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ i }}">
-                        {{ i }}
-                    </a>
-                </li>
+                <ul class="pagination">
+
+                    {% if events.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ events.previous_page_number }}">
+                                Previous
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for i in events.paginator.page_range %}
+
+                        {% if i == page %}
+                            <li class="page-item">
+                                <a class="page-link">
+                                    {{ i }}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ i }}">
+                                    {{ i }}
+                                </a>
+                            </li>
+                        {% endif %}
+
+                    {% endfor %}
+
+                    {% if events.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ events.next_page_number }}">Next</a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+
             {% endif %}
 
-        {% endfor %}
-
-        {% if events.has_next %}
-            <a href="{% url 'search_events' %}?query={{ search_query|urlencode }}&amp;page={{ events.next_page_number }}">Next</a>
+        {% elif search_query %}
+            <div class="text-center">
+                <p>No results found.</p>
+            </div>
         {% endif %}
 
-    {% elif search_query %}
+        </div>
 
-        <p>No results found.</p>
-
-    {% endif %}
+    </div>
 
 {% endblock %}
