@@ -9,8 +9,9 @@ Once approved, the charity owner can login and create 'event' objects to tell th
 
 ## FEATURES
 ### Models and Fields
-- CustomUser (extends AbstractUser) - all user fields - username, email, is_staff
-  - Extended fields - charity name, charity address, charity postcode, charity website, charity bio, country (django-countries field), continent (choice field), charity image (pillow), approved (boolean field)
+- CustomUser (extends AbstractUser) 
+  - Standard user fields - username, email, is_staff
+  - Extended user fields - charity name, charity address, charity postcode, charity website, charity bio, country (django-countries field), continent (choice field), charity image (pillow), approved (boolean field)
 - Event - user (foreign key), name, description, date, url, image field, slug field, approved + date in future method
 
 ### Forms
