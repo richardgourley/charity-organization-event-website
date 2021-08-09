@@ -3,18 +3,39 @@
 ## INTRO
 A membership website for charities written in Django and Wagtail CMS.
 
-Charity owners can create an account and add a profile for their charity. 
-
-The site admin has to approve all charity organization profiles.
+Charity owners can create an account and add a profile for their charity. The site admin has to approve all charity organization profiles.
 
 Once approved, the charity owner can login and create 'event' objects to tell the world about upcoming fundraising events.
 
 ## FEATURES
-- Approved charities listed in paginated pages.
-- Approved events listed in paginated pages.
-- Users can create a charity profile
-- Users can create events
-- Admin has to approve all users and events before they appear on the website.
+### Models and Fields
+- CustomUser (extends AbstractUser) - all user fields - username, email, is_staff
+  - Extended fields - charity name, charity address, charity postcode, charity website, charity bio, country (django-countries field), continent (choice field), charity image (pillow), approved (boolean field)
+- Event - user (foreign key), name, description, date, url, image field, slug field, approved + date in future method
+
+### Forms
+- Site Login form
+- Signup form
+- CustomUserCreationForm
+- CustomUserUpdateForm
+- Profile update form
+- Search events form
+- Password reset form
+
+### Site Admin
+- Events - approve events
+- Charity signups - approve charities
+
+### Site Pages
+- Index - description and site links including login/ logout/ signup links
+- All Charities - paginated list
+- All Events - paginated list
+- Search Events
+- LogIn/ LogOut
+- Signup
+- Password reset and confirmation
+- Profile page - (logged in users)
+
 
 ## TOOLS 
 - Django
@@ -23,9 +44,6 @@ Once approved, the charity owner can login and create 'event' objects to tell th
 - python-decouple
 - django-countries
 - Pillow
-- CustomUser model - extends AbstractUser
-- UserCreationForm
-- UserChangeForm
 - Django registration, login and password reset system
 
 ### To Do
@@ -57,8 +75,8 @@ Once approved, the charity owner can login and create 'event' objects to tell th
 New to Django and/ or Wagtail? To setup Django and Wagtail with Bootstrap and a bespoke database see my other repo for a step by step guide: https://github.com/richardgourley/django-wagtail-stepbystep
 
 ```
-virtualenv charityeventwebsite -p python3`
-cd charityeventwebsite
+virtualenv charityorganizationeventwebsite -p python3`
+cd charityorganizationeventwebsite
 source bin/activate
 pip install wagtail
 wagtail start charityorganizationeventwebsite
