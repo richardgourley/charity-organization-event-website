@@ -7,6 +7,7 @@ from django.utils import timezone
 # Create your models here.
 
 class Event(models.Model):
+    # This event will be deleted if the user is deleted from the system
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     event_name = models.CharField(max_length=255)
     event_description = models.TextField(max_length=2000)
@@ -24,4 +25,5 @@ class Event(models.Model):
 
     def date_in_future(self):
         return self.event_date >= timezone.now().date()
+
 
